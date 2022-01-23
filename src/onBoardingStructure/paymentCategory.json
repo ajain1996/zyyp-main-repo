@@ -1,0 +1,63 @@
+{
+    "list":[
+        {
+            "id": 1,
+            "value": "Expense Category 1",
+            "color": "Green",
+            "selected": false
+        },{
+            "id": 2,
+            "value": "Expense Category 2",
+            "color": "Green",
+            "selected": false
+        },
+        {
+            "id": 3,
+            "value": "Expense Category 3",
+            "color": "Green",
+            "selected": false
+        },
+        {
+            "id": 4,
+            "value": "Expense Category 4",
+            "color": "Green",
+            "selected": false
+        },
+        {
+            "id": 5,
+            "value": "Expense Category 5",
+            "color": "Green",
+            "selected": false
+        },
+        {
+            "id": 6,
+            "value": "Expense Category 6",
+            "color": "Green",
+            "selected": false
+        },
+        {
+            "id": 7,
+            "value": "Expense Category 7",
+            "color": "Green",
+            "selected": false
+        },
+        {
+            "id": 8,
+            "value": "Expense Category 8",
+            "color": "Green",
+            "selected": false
+        },
+        {
+            "id": 9,
+            "value": "Expense Category 9",
+            "color": "Green",
+            "selected": false
+        },{
+            "id": 10,
+            "value": "Expense Category 10",
+            "color": "Green",
+            "selected": false
+        }
+
+    ]
+}

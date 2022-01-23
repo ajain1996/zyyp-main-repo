@@ -1,0 +1,40 @@
+{
+    "list": [
+        {
+            "title": "Personal Details",
+            "next": "Next : Emirates ID",
+            "editable": {
+                "isEditable": true,
+                "isEditTextField": true,
+                "content": "Business Legal Name Pvt LTD",
+                "header_details": "Trade License"
+            },
+            "list_of_fields": [{
+                "field_type": 1
+            }]
+        },
+        {
+            "title": "Emirates ID",
+            "next": "Next : Card Setup",
+            "editable": {
+                "isEditable": true,
+                "isEditTextField": true,
+                "content": "Full Name",
+                "header_details": "Trade License"
+            },
+            "list_of_fields": []
+        },
+        {
+            "title": "Card Setup",
+            "next": "Next : Emirates ID",
+            "editable": {
+                "isEditable": false,
+                "isEditTextField": false,
+                "content": "Owner Details",
+                "header_details": "Owner / Authorised Personal"
+            },
+            "list_of_fields": []
+        }
+        
+    ]
+}
