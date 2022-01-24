@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableHighlight } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Image, StyleSheet, TouchableHighlight, ScrollView, TouchableOpacity } from 'react-native';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Card } from 'react-native-paper';
@@ -9,34 +9,71 @@ import { windowHeight, windowWidth } from '../../utils/utils';
 const Tab = createMaterialTopTabNavigator();
 
 export default function DateTopTabsComponent({ navigation }) {
+
+    const [dateBox, setDateBox] = useState("DEC22");
+
     return (
-        <View style={{ width: '100%', height: windowHeight }}>
-            <Tab.Navigator screenOptions={{
-                "tabBarLabelStyle": { textTransform: 'none' },
-                "tabBarStyle": {
-                    backgroundColor: "#fff",
-                    elevation: 3, height: 50
-                },
-                tabBarInactiveTintColor: '#000',
-                tabBarPressColor: "#dcdcdc",
-            }}>
-                <Tab.Screen
-                    name="Oct '21" component={BuildMonthComponent}
-                    initialParams={{ navigation: navigation }}
-                />
-                <Tab.Screen
-                    name="Nov '21" component={BuildMonthComponent}
-                    initialParams={{ navigation: navigation }}
-                />
-                <Tab.Screen
-                    name="Dec '21" component={BuildMonthComponent}
-                    initialParams={{ navigation: navigation }}
-                />
-                <Tab.Screen
-                    name="Jan '21" component={BuildMonthComponent}
-                    initialParams={{ navigation: navigation }}
-                />
-            </Tab.Navigator>
+        <View style={{ backgroundColor: '#eee' }}>
+            <View style={{ elevation: 160, shadowColor: '#999', backgroundColor: '#fff', marginVertical: 6 }}>
+                <ScrollView style={{ width: '100%' }} horizontal={true} showsHorizontalScrollIndicator={false}>
+                    <TouchableOpacity activeOpacity={0.5} style={{ width: windowWidth / 5, paddingVertical: 2, alignItems: 'center' }}
+                        onPress={() => { setDateBox("OCT22") }}
+                    >
+                        <View style={{ height: 10 }} />
+                        <CustomTextComponent
+                            text={"OCT '22"} fs={14} color={"#999"}
+                        />
+                        {dateBox === "OCT22" ? <View style={{ width: '74%', height: 3, backgroundColor: '#7B35E7', marginTop: 6 }} /> : <></>}
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.5} style={{ width: windowWidth / 5, paddingVertical: 2, alignItems: 'center' }}
+                        onPress={() => { setDateBox("NOV22") }}
+                    >
+                        <View style={{ height: 10 }} />
+                        <CustomTextComponent
+                            text={"NOV '22"} fs={14} color={"#999"}
+                        />
+                        {dateBox === "NOV22" ? <View style={{ width: '74%', height: 3, backgroundColor: '#7B35E7', marginTop: 6 }} /> : <></>}
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.5} style={{ width: windowWidth / 5, paddingVertical: 2, alignItems: 'center' }}
+                        onPress={() => { setDateBox("DEC22") }}
+                    >
+                        <View style={{ height: 10 }} />
+                        <CustomTextComponent
+                            text={"DEC '22"} fs={14} color={"#999"}
+                        />
+                        {dateBox === "DEC22" ? <View style={{ width: '74%', height: 3, backgroundColor: '#7B35E7', marginTop: 6 }} /> : <></>}
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.5} style={{ width: windowWidth / 5, paddingVertical: 2, alignItems: 'center' }}
+                        onPress={() => { setDateBox("JAN22") }}
+                    >
+                        <View style={{ height: 10 }} />
+                        <CustomTextComponent
+                            text={"JAN '22"} fs={14} color={"#999"}
+                        />
+                        {dateBox === "JAN22" ? <View style={{ width: '74%', height: 3, backgroundColor: '#7B35E7', marginTop: 6 }} /> : <></>}
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.5} style={{ width: windowWidth / 5, paddingVertical: 2, alignItems: 'center' }}
+                        onPress={() => { setDateBox("FEB22") }}
+                    >
+                        <View style={{ height: 10 }} />
+                        <CustomTextComponent
+                            text={"FEB '22"} fs={14} color={"#999"}
+                        />
+                        {dateBox === "FEB22" ? <View style={{ width: '74%', height: 3, backgroundColor: '#7B35E7', marginTop: 6 }} /> : <></>}
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.5} style={{ width: windowWidth / 5, paddingVertical: 2, alignItems: 'center' }}
+                        onPress={() => { setDateBox("MAR22") }}
+                    >
+                        <View style={{ height: 10 }} />
+                        <CustomTextComponent
+                            text={"MAR '22"} fs={14} color={"#999"}
+                        />
+                        {dateBox === "MAR22" ? <View style={{ width: '74%', height: 3, backgroundColor: '#7B35E7', marginTop: 6 }} /> : <></>}
+                    </TouchableOpacity>
+                </ScrollView>
+            </View>
+
+            {dateBox === "OCT22" ? <BuildMonthComponent navigation={navigation} /> : <></>}
         </View>
     )
 }
@@ -44,7 +81,10 @@ export default function DateTopTabsComponent({ navigation }) {
 
 const BuildMonthComponent = ({ navigation }) => {
     return (
-        <View style={{ backgroundColor: '#fff', height: 400, width: '100%', padding: 12 }}>
+        <View style={{ height: 400, width: '100%', padding: 12 }}>
+            <CustomTextComponent
+                text={"Monday, 17"} fs={11} color={"#999"}
+            />
             <BuildSingleMerchantComponent
                 onPress={() => { navigation.navigate("CompanyWalletTransactionScreen") }}
             />
@@ -103,7 +143,7 @@ const BuildSingleMerchantComponent = ({ onPress }) => {
                                 style={{ width: 20, height: 20, tintColor: 'grey', marginHorizontal: 4 }}
                             />
                             <CustomTextComponent
-                                text="4284" fs={15} color={"grey"}
+                                text="4284" fs={14} color={"grey"}
                             />
                         </View>
 

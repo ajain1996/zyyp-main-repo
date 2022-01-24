@@ -91,13 +91,7 @@ export default function CompanyWalletMainScreen({ }) {
             </View>
             {/* <Text /> */}
 
-            <View
-                style={{
-                    width: '100%',
-                    elevation: 7,
-                    shadowColor: '#999',
-                    backgroundColor: '#fff',
-                }}>
+            <View style={{ width: '100%', elevation: 120, shadowColor: '#999' }}>
                 <DateTopTabsComponent />
             </View>
         </ScrollView>
