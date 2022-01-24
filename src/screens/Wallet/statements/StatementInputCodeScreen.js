@@ -1,12 +1,14 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text, Image, ScrollView } from 'react-native';
 import CustomInputBoxScreen from '../../../components/CustomInputBoxScreen';
 import CustomTextComponent from '../../../components/CustomTextComponent';
-import { windowWidth } from '../../../utils/utils';
+import { COLORS } from '../../../utils/colors';
+import { windowHeight, windowWidth } from '../../../utils/utils';
 import { CompanyWalletTransactionHeader } from '../CompanyWalletTransactionScreen';
 import { WithdrawFundsBtn } from '../WithDrawlFundsScreen';
 
 export default function StatementInputCodeScreen({ navigation }) {
+
 
     return (
         <>
@@ -17,7 +19,7 @@ export default function StatementInputCodeScreen({ navigation }) {
             <View style={{ width: '100%', height: "100%", padding: 20, backgroundColor: '#fff' }}>
                 {/* <View style={{ alignItems: 'flex-end' }}>
                     <Image
-                        source={require("../../../assets/icons/close.png")}
+                        source={require("../../../../assets/icons/close.png")}
                         style={{ width: 20, height: 20, tintColor: COLORS.BLACK40 }}
                     />
                 </View> */}
@@ -38,7 +40,7 @@ export default function StatementInputCodeScreen({ navigation }) {
                         text="WITHDRAW TO THIS ACCOUNT"
                         onPress={() => {
                             // ConfirmTransferScreen
-                            navigation.navigate("InputSecurityCodeScreen");
+                            navigation.navigate("ConfirmTransferScreen");
                         }}
                     />
                 </View>

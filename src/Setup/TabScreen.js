@@ -52,7 +52,7 @@ const PaymentStack = createNativeStackNavigator();
 const WalletStack = createNativeStackNavigator();
 const InsightsStack = createNativeStackNavigator();
 
-const TabScreen = ({ }) => {
+const TabScreen = ({}) => {
   return (
     <Tab.Navigator
       initialRouteName="Expense"
@@ -119,7 +119,7 @@ const TabScreen = ({ }) => {
   );
 };
 
-const DashboardScreen = ({ }) => {
+const DashboardScreen = ({}) => {
   return (
     <DashboardStack.Navigator>
       <DashboardStack.Screen
@@ -224,7 +224,7 @@ const DashboardScreen = ({ }) => {
   );
 };
 
-const ExpenseScreen = ({ }) => {
+const ExpenseScreen = ({}) => {
   return (
     <ExpenseStack.Navigator initialRouteName={"Settings"}>
       <ExpenseStack.Screen
@@ -258,7 +258,7 @@ const ExpenseScreen = ({ }) => {
   );
 };
 
-const PaymentScreen = ({ }) => {
+const PaymentScreen = ({}) => {
   return (
     <PaymentStack.Navigator initialRouteName={"Settings"}>
       <ExpenseStack.Screen
@@ -270,19 +270,79 @@ const PaymentScreen = ({ }) => {
   );
 };
 
-const WalletScreen = ({ }) => {
+const WalletScreen = ({}) => {
   return (
-    <WalletStack.Navigator initialRouteName={"Settings"}>
-      <ExpenseStack.Screen
+    <WalletStack.Navigator>
+      {/* <ExpenseStack.Screen
         name={"Wallet"}
         component={Wallet}
+        options={{ headerShown: false }}
+      /> */}
+      <ExpenseStack.Screen
+        name={"CompanyWalletMainScreen"}
+        component={CompanyWalletMainScreen}
+        options={{ headerShown: false }}
+      />
+      <ExpenseStack.Screen
+        name={"AddFundsScreen"}
+        component={AddFundsScreen}
+        options={{ headerShown: false }}
+      />
+      <ExpenseStack.Screen
+        name={"WithDrawlFundsScreen"}
+        component={WithDrawlFundsScreen}
+        options={{ headerShown: false }}
+      />
+      <ExpenseStack.Screen
+        name={"PersonalCardMainScreen"}
+        component={PersonalCardMainScreen}
+        options={{ headerShown: false }}
+      />
+      <ExpenseStack.Screen
+        name={"CompanyWalletTransactionScreen"}
+        component={CompanyWalletTransactionScreen}
+        options={{ headerShown: false }}
+      />
+      <ExpenseStack.Screen
+        name={"ConfirmTransferScreen"}
+        component={ConfirmTransferScreen}
+        options={{ headerShown: false }}
+      />
+      <ExpenseStack.Screen
+        name={"StampedStatementScreen"}
+        component={StampedStatementScreen}
+        options={{ headerShown: false }}
+      />
+      <ExpenseStack.Screen
+        name={"StatementInputCodeScreen"}
+        component={StatementInputCodeScreen}
+        options={{ headerShown: false }}
+      />
+      <ExpenseStack.Screen
+        name={"InputSecurityCodeScreen"}
+        component={InputSecurityCodeScreen}
+        options={{ headerShown: false }}
+      />
+      <ExpenseStack.Screen
+        name={"PersonalWalletMainScreen"}
+        component={PersonalWalletMainScreen}
+        options={{ headerShown: false }}
+      />
+      <ExpenseStack.Screen
+        name={"PWRequestNewCardScreen"}
+        component={PWRequestNewCardScreen}
+        options={{ headerShown: false }}
+      />
+      <ExpenseStack.Screen
+        name={"PersonalCardSettingsScreen"}
+        component={PersonalCardSettingsScreen}
         options={{ headerShown: false }}
       />
     </WalletStack.Navigator>
   );
 };
 
-const InsightsScreen = ({ }) => {
+const InsightsScreen = ({}) => {
   return (
     <InsightsStack.Navigator initialRouteName={"Settings"}>
       <ExpenseStack.Screen

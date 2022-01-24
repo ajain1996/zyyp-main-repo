@@ -29,7 +29,7 @@ export default function CustomInputSecurityBox({ callBack }) {
             <CustomTextComponent
                 text={"Company Balance: AED 35,500.00"}
                 fs={14}
-                fw="600"
+                ff="Montserrat-Regular"
                 color={COLORS.BLACK}
             />
             <View style={{ height: 10 }} />
@@ -60,7 +60,7 @@ export default function CustomInputSecurityBox({ callBack }) {
                             <CustomTextComponent
                                 text={item}
                                 fs={20}
-                                fw="600"
+                                ff="Montserrat-Regular"
                                 color={"#000"}
                             />
                         </TouchableHighlight>

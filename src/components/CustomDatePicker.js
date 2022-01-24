@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { Button, View, StyleSheet, Text, Image } from "react-native";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+// import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import moment from 'moment';
 import { windowWidth } from "../utils/utils";
 import { COLORS } from "../utils/colors";
+import SvgUri from "react-native-svg-uri";
 
 
 var today = new Date();
@@ -112,8 +113,8 @@ export default class CustomDatePicker extends Component {
             <View style={this.props.bigField == null ? styles.container : styles.containerBig}>
                 <TouchableOpacity onPress={this.showDateTimePicker}>
                     <View style={this.props.bigField == null ? styles.inputContainer : styles.inputContainerBig}>
-                        <Image
-                            source={require("../../assets/icons/date.png")}
+                        <SvgUri
+                            source={require("../../assets/svg/date.svg")}
                             style={{ width: 22, height: 22 }}
                         />
                         {/* <FontAwesome5Icon name="calendar-minus" color={COLORS.BLACK} size={24} /> */}

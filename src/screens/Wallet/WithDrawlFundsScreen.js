@@ -47,7 +47,7 @@ export default function WithDrawlFundsScreen({ navigation }) {
                     <View style={{ paddingHorizontal: 10 }}>
                         <CustomTextComponent
                             text={`NOTE: Your transfer will be processed\nwithin 2 working days`}
-                            fs={13} color={COLORS.BLACK40} fw="500"
+                            fs={12.5} color={COLORS.BLACK40} fw="500"
                         />
                     </View>
                 </View>

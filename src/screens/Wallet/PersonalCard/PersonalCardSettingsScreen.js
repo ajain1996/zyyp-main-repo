@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Switch, Image } from 'react-native';
+import { View, Text, ScrollView, Switch, Image } from 'react-native';
 import CustomTextComponent from '../../../components/CustomTextComponent';
 import { COLORS } from '../../../utils/colors';
 import { windowHeight, windowWidth } from '../../../utils/utils';

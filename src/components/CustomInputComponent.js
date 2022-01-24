@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TextInput, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-import Entypo from 'react-native-vector-icons/AntDesign';
+// import Entypo from 'react-native-vector-icons/AntDesign';
 import { COLORS } from '../utils/colors';
 import { windowWidth } from '../utils/utils';
 

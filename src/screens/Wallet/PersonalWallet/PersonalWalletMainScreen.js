@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
 import CustomTextComponent from '../../../components/CustomTextComponent';
 import { COLORS } from '../../../utils/colors';
 import { windowHeight, windowWidth } from '../../../utils/utils';
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
 import CustomModalComponent from './lock_wallet/LockWalletScreen';
-
+import SvgUri from "react-native-svg-uri";
+import BottomSheet from 'react-native-gesture-bottom-sheet';
 export default function PersonalWalletMainScreen({ navigation }) {
+    const bottomSheet = useRef();
 
     const imagesList = [
         {
@@ -19,6 +21,11 @@ export default function PersonalWalletMainScreen({ navigation }) {
             img: require("../../../../assets/images/card-1.png"),
         },
     ]
+
+    useEffect(() => {
+        bottomSheet.current.show()
+    }, []);
+
 
     return (
         <ScrollView style={{ backgroundColor: '#EEECF2' }}>
@@ -41,28 +48,34 @@ export default function PersonalWalletMainScreen({ navigation }) {
                         <TouchableOpacity activeOpacity={0.8} onPress={() => { navigation.navigate("PersonalCardMainScreen") }}>
                             <Image
                                 source={item.img}
-                                resizeMode="cover"
+                                // resizeMode="cover"
                                 style={{
-                                    width: windowWidth / 1.05, height: 220, borderRadius: 20, marginLeft: 20
+                                    width: windowWidth / 1.05, height: 250, borderRadius: 20, marginLeft: 20
                                 }}
                             />
                         </TouchableOpacity>
                     )}
                 />
 
-                <View style={styles.transactionContainer}>
-                    <View style={{ alignItems: 'center', paddingHorizontal: 20 }}>
-                        <View style={{ width: 34, height: 3.6, backgroundColor: 'grey', marginVertical: 1.5, borderRadius: 50 }} />
-                        <View style={{ width: 34, height: 3.6, backgroundColor: 'grey', marginVertical: 0.3, borderRadius: 50 }} />
-                        <View style={{ paddingHorizontal: 20, marginTop: 15 }}>
-                            <CustomTextComponent
-                                text="Transactions" fs={22} color={"#000"} ff="PlayfairDisplay-Black"
-                            />
+                <BottomSheet
+                    hasDraggableIcon={false} ref={bottomSheet} backgroundColor={"transparent"}
+                    height={120} sheetBackgroundColor={"#fff"} draggable={false} radius={22}
+                >
+                    <View style={styles.transactionContainer}>
+                        <View style={{ alignItems: 'center', paddingHorizontal: 20 }}>
+                            <View style={{ width: 34, height: 3.6, backgroundColor: 'grey', marginVertical: 1.5, borderRadius: 50 }} />
+                            <View style={{ width: 34, height: 3.6, backgroundColor: 'grey', marginVertical: 0.3, borderRadius: 50 }} />
+                            <View style={{ paddingHorizontal: 20, marginTop: 15 }}>
+                                <CustomTextComponent
+                                    text="Transactions" fs={22} color={"#000"} ff="PlayfairDisplay-Black"
+                                />
+                            </View>
                         </View>
-                    </View>
 
-                    <Text />
-                </View>
+                        <Text />
+                    </View>
+                </BottomSheet>
+
             </View>
         </ScrollView>
     )
@@ -86,9 +99,9 @@ const MainHeaderComponent = () => {
                         />
                     </View>
 
-                    <Image
-                        source={require("../../../../assets/icons/download.png")}
-                        style={{ width: 22, height: 22, marginLeft: 20 }}
+                    <SvgUri
+                        source={require("../../../../assets/svg/download.svg")}
+                        style={{ marginLeft: 20, tintColor: '#7B8794' }}
                     />
                 </View>
             </View>
@@ -131,12 +144,12 @@ const BuildAddFundsComponent = ({ navigation }) => {
                 {renderSingleFundComponent(
                     require("../../../../assets/svg/add-funds.svg"),
                     "ADD FUNDS", () => {
-                        navigation.navigate("AddFundsScreen")
+                        navigation.navigate("StatementInputCodeScreen")
                     }
                 )}
 
                 {renderSingleFundComponent(
-                    require("../../../../assets/icons/statement.svg"),
+                    require("../../../../assets/svg/lockwallet.svg"),
                     "LOCK WALLET", () => {
                         setModalVisible(true);
                     }
@@ -192,10 +205,9 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     transactionContainer: {
-        width: '100%', elevation: 24,
-        shadowColor: '#999',
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
+        width: '100%',
+        // borderTopLeftRadius: 30,
+        // borderTopRightRadius: 30,
         backgroundColor: '#fff',
         paddingVertical: 20,
     },

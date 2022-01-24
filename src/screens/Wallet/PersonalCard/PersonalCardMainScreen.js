@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import CustomTextComponent from '../../../components/CustomTextComponent';
+import DateTopTabsComponent from '../../../components/home/DateTopTabsComponent';
 import PersonalCardDateTabsComponent from '../../../components/personalcard/PersonalCardDateTabsComponent';
 import { COLORS } from '../../../utils/colors';
+import { windowWidth } from '../../../utils/utils';
 import { CompanyWalletTransactionHeader } from '../CompanyWalletTransactionScreen';
 
 export default function PersonalCardMainScreen({ navigation }) {

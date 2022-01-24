@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Modal from "react-native-modal";
+import SvgUri from "react-native-svg-uri";
 import CustomTextComponent from "../../../../components/CustomTextComponent";
 import { COLORS } from "../../../../utils/colors";
 import { windowWidth } from "../../../../utils/utils";
@@ -16,8 +17,8 @@ export default function CustomModalComponent({ screenType, setModalVisible, isMo
                     alignItems: "center", paddingHorizontal: 20, backgroundColor: '#fff', paddingVertical: 40,
                     borderRadius: 14
                 }}>
-                    <Image
-                        source={require("../../../../../assets/icons/modal_header.png")}
+                    <SvgUri
+                        source={require("../../../../../assets/svg/modal_header.svg")}
                         style={{ width: 50, height: 50, tintColor: COLORS.PURPLE }}
                     />
                     <View style={{ height: 24 }} />
@@ -60,4 +61,14 @@ export default function CustomModalComponent({ screenType, setModalVisible, isMo
         </TouchableOpacity>
     );
 }
+
+
+const styles = StyleSheet.create({
+    buttonStyle: {
+        color: 'red',
+        marginTop: 20,
+        padding: 20,
+        backgroundColor: 'green'
+    }
+});
 

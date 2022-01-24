@@ -28,7 +28,8 @@ export default function CustomInputBoxScreen({ callBack }) {
                                         <CustomTextComponent
                                             text={item.item}
                                             fs={44}
-                                            fw="300"
+                                            // fw="300"
+                                            ff="Montserrat-Regular"
                                             color={COLORS.BLACK}
                                         />
                                     );
@@ -37,7 +38,7 @@ export default function CustomInputBoxScreen({ callBack }) {
                             <CustomTextComponent
                                 text={".00"}
                                 fs={44}
-                                fw="300"
+                                ff="Montserrat-Regular"
                                 color={COLORS.BLACK}
                             />
                         </View>
@@ -45,7 +46,7 @@ export default function CustomInputBoxScreen({ callBack }) {
                             <CustomTextComponent
                                 text={"0"}
                                 fs={44}
-                                fw="400"
+                                ff="Montserrat-Regular"
                                 color={"#999"}
                             />
                         </View>}
@@ -68,7 +69,7 @@ export default function CustomInputBoxScreen({ callBack }) {
             <CustomTextComponent
                 text={"Company Balance: AED 35,500.00"}
                 fs={14}
-                fw="600"
+                ff="Montserrat-Regular"
                 color={COLORS.BLACK}
             />
             <View style={{ height: 10 }} />
@@ -99,7 +100,7 @@ export default function CustomInputBoxScreen({ callBack }) {
                             <CustomTextComponent
                                 text={item}
                                 fs={20}
-                                fw="600"
+                                ff="Montserrat-Regular"
                                 color={"#000"}
                             />
                         </TouchableHighlight>

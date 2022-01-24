@@ -1,0 +1,11 @@
+Error: Option "--root" is missing
+    at C:\Users\hp\AppData\Roaming\npm\node_modules\react-native\node_modules\@react-native-community\cli\build\tools\assertRequiredOptions.js:51:13
+    at Array.forEach (<anonymous>)
+    at assertRequiredOptions (C:\Users\hp\AppData\Roaming\npm\node_modules\react-native\node_modules\@react-native-community\cli\build\tools\assertRequiredOptions.js:40:11)
+    at Command.handleAction (C:\Users\hp\AppData\Roaming\npm\node_modules\react-native\node_modules\@react-native-community\cli\build\index.js:181:42)
+    at Command.listener (C:\Users\hp\AppData\Roaming\npm\node_modules\react-native\node_modules\commander\index.js:315:8)
+    at Command.emit (node:events:390:28)
+    at Command.parseArgs (C:\Users\hp\AppData\Roaming\npm\node_modules\react-native\node_modules\commander\index.js:651:12)
+    at Command.parse (C:\Users\hp\AppData\Roaming\npm\node_modules\react-native\node_modules\commander\index.js:474:21)
+    at setupAndRun (C:\Users\hp\AppData\Roaming\npm\node_modules\react-native\node_modules\@react-native-community\cli\build\index.js:267:24)
+    at Object.run (C:\Users\hp\AppData\Roaming\npm\node_modules\react-native\node_modules\@react-native-community\cli\build\index.js:206:11)

@@ -35,12 +35,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.zyyp",
+    package = "com.zyppui",
 )
 
 android_resource(
     name = "res",
-    package = "com.zyyp",
+    package = "com.zyppui",
     res = "src/main/res",
 )
 
