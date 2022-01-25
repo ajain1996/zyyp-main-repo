@@ -44,6 +44,8 @@ import InputSecurityCodeScreen from "../screens/Wallet/addfunds/InputSecurityCod
 import PersonalWalletMainScreen from "../screens/Wallet/PersonalWallet/PersonalWalletMainScreen";
 import PWRequestNewCardScreen from "../screens/Wallet/PersonalWallet/PWRequestNewCardScreen";
 import PersonalCardSettingsScreen from "../screens/Wallet/PersonalCard/PersonalCardSettingsScreen";
+import CardBlockReplace from "../screens/Wallet/PersonalCard/CardBlockReplace";
+import GenerateStatementScreen from "../screens/Wallet/PersonalCard/GenerateStatementScreen";
 
 const Tab = createBottomTabNavigator();
 const DashboardStack = createNativeStackNavigator();
@@ -336,6 +338,16 @@ const WalletScreen = ({}) => {
       <ExpenseStack.Screen
         name={"PersonalCardSettingsScreen"}
         component={PersonalCardSettingsScreen}
+        options={{ headerShown: false }}
+      />
+      <ExpenseStack.Screen
+        name={"CardBlockReplace"}
+        component={CardBlockReplace}
+        options={{ headerShown: false }}
+      />
+      <ExpenseStack.Screen
+        name={"GeneratStatementScreen"}
+        component={GenerateStatementScreen}
         options={{ headerShown: false }}
       />
     </WalletStack.Navigator>

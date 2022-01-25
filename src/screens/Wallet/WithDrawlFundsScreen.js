@@ -52,7 +52,7 @@ export default function WithDrawlFundsScreen({ navigation }) {
                     </View>
                 </View>
 
-                <View style={{ justifyContent: 'flex-end' }}>
+                <View style={{ justifyContent: 'flex-end', marginBottom: 20 }}>
                     <WithdrawFundsBtn
                         text="WITHDRAW TO THIS ACCOUNT"
                         onPress={() => {

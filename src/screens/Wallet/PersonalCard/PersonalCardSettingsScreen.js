@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, Switch, Image } from 'react-native';
+import { View, Text, ScrollView, Switch, Image, TouchableOpacity } from 'react-native';
+import SvgUri from 'react-native-svg-uri';
 import CustomTextComponent from '../../../components/CustomTextComponent';
 import { COLORS } from '../../../utils/colors';
 import { windowHeight, windowWidth } from '../../../utils/utils';
@@ -71,11 +72,12 @@ export default function PersonalCardSettingsScreen({ navigation }) {
                             <CustomTextComponent
                                 text="Block & Replace" fs={18} color={COLORS.BLACK} fw="500"
                             />
-
-                            <Image
-                                source={require("../../../../assets/icons/arrow-back.png")}
-                                style={{ width: 34, height: 34 }}
+                            <TouchableOpacity onPress={() => navigation.navigate('CardBlockReplace')}>
+                            <SvgUri
+                                source={require("../../../../assets/svg/arrow-front.svg")}
+                                style={{ marginRight: 15 }}
                             />
+                            </TouchableOpacity>
                         </View>
                         <View style={{ height: 30 }} />
 
