@@ -16,6 +16,7 @@ export default styles = (type, color) =>
       paddingHorizontal: moderateScale(15),
       borderBottomWidth: 1,
       borderBottomColor: COLORS.inner_line,
+    
     },
     padding: {
       height: 7,

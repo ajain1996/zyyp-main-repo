@@ -17,7 +17,7 @@ export const Notes = ({
       <View
         style={[
           styles().notesTextFieldContainer,
-          { height: popup ? moderateScale(140) : moderateScale(90) },
+          { height: popup ? moderateScale(160) : moderateScale(90) },
         ]}
       >
         <TextInput

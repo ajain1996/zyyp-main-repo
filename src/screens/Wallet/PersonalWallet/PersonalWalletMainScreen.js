@@ -270,6 +270,9 @@ const BuildAddFundsComponent = ({ navigation }) => {
         screenType="lock_wallet"
         setModalVisible={setModalVisible}
         isModalVisible={isModalVisible}
+        buttonText={'UNLOCK'}
+        titleText={"Unlock Wallet?"}
+        mainText={'The wallet will become active and you will be able to do transactions. Are you sure you want to unlock your wallet?'}
       />
     </View>
   );

@@ -15,10 +15,12 @@ import CustomDatePicker from "../../../components/CustomDatePicker";
 import CustomTextComponent from "../../../components/CustomTextComponent";
 import { COLORS } from "../../../utils/colors";
 import { CompanyWalletTransactionHeader } from "../CompanyWalletTransactionScreen";
+import CustomModalComponent from "../PersonalWallet/lock_wallet/LockWalletScreen";
 
 export default GeneratStatementScreen = ({ navigation }) => {
   const [value, setValue] = React.useState("first");
   const [clear3, setClear3] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
   const [StartDate, setStartDate] = useState("");
   const [EndDate, setEndDate] = useState("");
 
@@ -206,14 +208,22 @@ export default GeneratStatementScreen = ({ navigation }) => {
           />
         </View>
       </TouchableOpacity> */}
-      <View style={{ alignItems: "center", elevation: 30, marginTop: 'auto', marginBottom: 20 }}>
+      <View style={{ alignItems: "center", elevation: 30, marginTop: 90, marginBottom: 20 }}>
         <WithdrawFundsBtn
           text="GENERATE STATEMENT"
           onPress={() => {
-            navigation.navigate("StatementInputCodeScreen");
+            setModalVisible(true)
           }}
         />
       </View>
+      <CustomModalComponent
+        screenType="lock_wallet"
+        setModalVisible={setModalVisible}
+        isModalVisible={isModalVisible}
+        buttonText={'CONFIRM'}
+        titleText={"Generate Statement?"}
+        mainText={'A e-statement will be generated and emailed to your registered email address pr***@**yp.io'}
+      />
     </View>
   );
 };

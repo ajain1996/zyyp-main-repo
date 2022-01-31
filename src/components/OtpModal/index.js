@@ -12,6 +12,7 @@ import {
 import { COLORS, FONTS, images, SIZES, VECTOR } from "../../constants";
 import { Button, ButtonText } from "../../components";
 import { moderateScale } from "react-native-size-matters";
+import DoubleOtp from "./DoubleOtp";
 
 const OtpComponent = ({
   arr,
@@ -27,7 +28,15 @@ const OtpComponent = ({
   time,
   resendClick,
   btntext,
+  double,
 }) => {
+
+  const [againVisible, setagainVisible] = useState(false);
+
+  const handleAgainVisible = () => {
+    setagainVisible(!againVisible);
+  }
+
   return (
     <Modal
       animationType="slide"
@@ -259,7 +268,7 @@ const OtpComponent = ({
               color={color == true ? COLORS.primary : COLORS.inputborder}
               onPress={
                 color == true
-                  ? () => closeModal("send")
+                  ? double ? () => handleAgainVisible() : closeModal("send")
                   : () => alert("please enter otp")
               }
             >
@@ -270,6 +279,20 @@ const OtpComponent = ({
             </Button>
           </View>
         </View>
+        <DoubleOtp
+          arr={arr}
+          visiblity={againVisible}
+          sumNumber={sumNumber}
+          popItem={popItem}
+          icon={icon}
+          show={show}
+          time={time}
+          color={color}
+          title={"Re-enter Security Code"}
+          des={`Please confirm the security pin for your card ending with 2130`}
+          closeModal={closeModal}
+          resendClick={resendClick}
+        />
       </SafeAreaView>
     </Modal>
   );

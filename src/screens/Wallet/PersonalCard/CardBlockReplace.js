@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   View,
@@ -7,16 +7,267 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
+  BackHandler,
 } from "react-native";
 
 import SelectDropdown from "react-native-select-dropdown";
 import SvgUri from "react-native-svg-uri";
+import { useDispatch } from "react-redux";
+import { OtpComponent } from "../../../components";
 import CustomTextComponent from "../../../components/CustomTextComponent";
+import { Notes } from "../../../components/Notes";
+import { strings } from "../../../constants";
 import { COLORS } from "../../../utils/colors";
 import { CompanyWalletTransactionHeader } from "../CompanyWalletTransactionScreen";
 import { WithdrawFundsBtn } from "../WithDrawlFundsScreen";
 export default CardBlockReplace = ({ navigation }) => {
-  const cardData = ["Card lost", "card1", "card2", "card3"];
+  const cardData = ["Card 1", "card 2", "card 3", "card 4"];
+
+  const dispatch = useDispatch();
+  //--- Values
+  const [orgName, setOrgName] = useState("");
+  const [email, setEmail] = useState("");
+  const emailInputRef = React.createRef();
+
+  // ---- Otp State Maintaing
+  const [otpCode, setOtpCode] = useState("");
+  const [otpPlaceHolderText, setOtpPlaceHolderText] = useState([
+    ".",
+    ".",
+    ".",
+    ".",
+  ]);
+  const [seconds, setSeconds] = useState(30);
+  const [ownerEmail, setOwnerEmail] = useState("");
+  const [isShowOtpPopup, setIsShowOtpPopup] = useState(false);
+  const [passVisble, setPassVisble] = useState(true);
+  const [colorChange, setcolorChange] = useState(false);
+
+  // Terms & conditions and privacy policy
+  const [isShowTermsPopup, setIsShowTermsPopup] = useState(false);
+  const [termsTitle, setTermsTitle] = useState("");
+  const [termsDesc, setTermsDesc] = useState("");
+
+  const [loading, setLoading] = useState(false);
+
+  // Toast handling state
+  const [isShowToast, setShowToast] = useState(false);
+  const [alertType, setAlertType] = useState(0);
+  const [toastTitle, setToasttitle] = useState("");
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      () => true
+    );
+    return () => backHandler.remove();
+  }, []);
+
+  useEffect(() => {
+    setOtpCode(otpPlaceHolderText.join("").toString());
+    if (isShowOtpPopup == true) {
+      if (seconds > 0) {
+        setTimeout(() => setSeconds(seconds - 1), 1000);
+      } else {
+        setSeconds("0");
+      }
+    } else {
+      setSeconds(30);
+    }
+  }, [otpPlaceHolderText, seconds]);
+
+  // Toast Content Handling
+  const toastHandle = (type, message) => {
+    setAlertType(type);
+    setToasttitle(message);
+    setShowToast(true);
+  };
+
+  //Password Show Hide on OTP modal
+  const onChangePasswordVisibility = (val) => {
+    setPassVisble(!val);
+  };
+
+  const infoClick = () => {
+    toastHandle(1, "Info message.");
+  };
+  const headerBackclick = () => {
+    navigation.navigate("Welcome");
+  };
+  //Privacy policy and Terms and Events
+  const terms = (title, description, show) => {
+    setTermsTitle(title);
+    setTermsDesc(description);
+    setIsShowTermsPopup(show);
+  };
+  const onDismiss = () => {
+    setShowToast(false);
+    setcolorChange(false);
+  };
+
+  const onChangeOtpText = (v) => {
+    var num = [...otpPlaceHolderText];
+    for (let i = 0; i <= 3; i++) {
+      if (num[i] == ".") {
+        num[i] = v;
+        break;
+      } else if (i >= 2) {
+        setcolorChange(true);
+      } else {
+        setcolorChange(false);
+      }
+    }
+    setOtpPlaceHolderText(num);
+  };
+  const clearOtp = () => {
+    setcolorChange(false);
+    var num = [...otpPlaceHolderText];
+    for (let i = 3; i >= 0; i--) {
+      if (num[i] !== ".") {
+        num[i] = ".";
+        break;
+      }
+    }
+    setOtpPlaceHolderText(num);
+  };
+
+  // Sign up Validation
+  const signupFormValidation = () => {
+    if (orgName.length === 0) {
+      toastHandle(0, "Please enter company name");
+    } else if (email.length == 0) {
+      toastHandle(0, "Please Enter Email ID");
+    } else if (isValidEmail(email) === false) {
+      toastHandle(0, "Invalid email ID, please verify");
+    } else {
+      setLoading(true);
+      // signUpApiCall();
+
+      sendOtpApi();
+    }
+  };
+
+  // Signup Api Call
+  const signUpApiCall = async () => {
+    try {
+      const body = {
+        email: email,
+        organization_name: orgName,
+      };
+      const response = await authSignup(body);
+      if (isResponseisValid(response)) {
+        const responseData = response.data;
+        setLoading(false);
+        dispatch(RegistrationData(responseData.result));
+        setOwnerEmail(email);
+        sendOtpApi();
+      } else {
+        //Fail Response for Signup
+        setLoading(false);
+        if (response.data) {
+          toastHandle(0, response.data);
+        }
+      }
+    } catch (error) {
+      setLoading(false);
+      toastHandle(0, strings.apierror);
+    }
+  };
+
+  // Otp Api Call
+  const sendOtpApi = async () => {
+    const body = {
+      email: email,
+      type: "EMAIL",
+    };
+    try {
+      const otpResponse = await authOtp(body);
+      if (isResponseisValid(otpResponse)) {
+        setLoading(false);
+        setIsShowOtpPopup(true);
+        otpTimeValidation();
+      } else {
+        setLoading(false);
+        if (otpResponse.data) {
+          toastHandle(0, otpResponse.data);
+        }
+      }
+    } catch (error) {
+      setLoading(false);
+      toastHandle(0, strings.apierror);
+    }
+  };
+
+  const otpTimeValidation = () => {
+    if (seconds > 0) {
+      setTimeout(() => setSeconds(seconds - 1), 1000);
+    } else {
+      setSeconds("0");
+    }
+  };
+
+  // Resend Otp Validation
+  const otpResend = () => {
+    setLoading(true);
+    setOtpPlaceHolderText([".", ".", ".", "."]);
+    if (seconds === "0") {
+      otpResendApiCall();
+    } else {
+      toastHandle(0, strings.apierror);
+      setLoading(false);
+    }
+  };
+  // Resend Otp Api Call
+  const otpResendApiCall = async () => {
+    const ob = {
+      email: email,
+      type: "EMAIL",
+    };
+    try {
+      const resendOtpResponse = await authOtp(ob);
+      if (isResponseisValid(resendOtpResponse)) {
+        setLoading(false);
+        setSeconds(30);
+      } else {
+        setLoading(false);
+        if (resendOtpResponse.data) {
+          toastHandle(0, resendOtpResponse.data);
+        }
+      }
+    } catch (e) {
+      //Something Went Wrong in api
+      setLoading(false);
+      toastHandle(0, strings.apierror);
+    }
+  };
+
+  // OTP Close and Submit Button Handling
+  const otpButtonEvent = (val) => {
+    setcolorChange(false);
+    if (val == "close") {
+      setIsShowOtpPopup(false);
+      setPassVisble(true);
+      setOtpPlaceHolderText([".", ".", ".", "."]);
+    } else {
+      setIsShowOtpPopup(false);
+      otpValidationApiCall();
+    }
+  };
+
+  const refreshData = ({ message }) => {
+    toastHandle(0, message);
+  };
+
+  // Otp Validation Api call
+  const otpValidationApiCall = () => {
+    navigation.navigate("Password", {
+      refreshData: refreshData,
+      from: "signup",
+      email: email,
+      otpCode: otpCode,
+      organization_name: orgName,
+    });
+  };
 
   return (
     <View style={{ flex: 1, flexDirection: "column", backgroundColor: "#fff" }}>
@@ -59,7 +310,7 @@ export default CardBlockReplace = ({ navigation }) => {
         style={{
           color: "#343C44",
           fontSize: 13,
-          marginLeft: 30,
+          marginHorizontal: 24,
           fontWeight: "400",
           fontFamily: "Poppins-Regular",
         }}
@@ -69,10 +320,9 @@ export default CardBlockReplace = ({ navigation }) => {
 
       <View
         style={{
-          marginLeft: 30,
-          marginRight: 30,
+          marginHorizontal: 24,
           marginTop: 10,
-          backgroundColor: "#E5E5E5",
+          // backgroundColor: "#E5E5E5",
         }}
       >
         <SelectDropdown
@@ -87,11 +337,11 @@ export default CardBlockReplace = ({ navigation }) => {
             console.log(isOpened);
             return (
               <SvgUri
-                source={require("../../../../assets/svg/down-arrow.svg")}
-                style={[
-                  styles.ImageStyle,
-                  { tintColor: "#7B8794", width: 20, height: 20 },
-                ]}
+                source={require("../../../../assets/svg/down-arrow-br.svg")}
+                // style={[
+                //   styles.ImageStyle,
+                //   { tintColor: "#7B8794", width: 20, height: 20 },
+                // ]}
               />
             );
           }}
@@ -102,19 +352,13 @@ export default CardBlockReplace = ({ navigation }) => {
         />
       </View>
 
-      <View style={styles.SectionStyle}>
-        <TextInput
-          style={{ flex: 1, marginLeft: 15 }}
-          placeholderTextColor={"#85949F"}
-          placeholder="Type any relevant comment on this request"
-          textAlignVertical="top"
-          fontSize={18}
-          multiline={true}
-          textAlignVertical={"top"}
-          underlineColorAndroid="transparent"
+      <View style={{marginHorizontal: 24, marginTop: 20}}>
+        <Notes
+          placeholderContent={"Notes"}
+          placeholder={"Type any relevant comment to this request"}
+          popup={true}
         />
       </View>
-
       {/* <Text
         style={{
           color: "#85949F",
@@ -134,28 +378,28 @@ export default CardBlockReplace = ({ navigation }) => {
           text={"You will be charged a fixed fee of"}
           fs={18}
           color={COLORS.BLACK40}
-          fw="700"
+          fw="bold"
         />
 
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <CustomTextComponent
-            text={"aed 20"}
+            text={"aed 40"}
             fs={18}
             color={COLORS.ORANGE}
-            fw="700"
+            fw="bold"
           />
           <CustomTextComponent
             text={" for each request for a"}
             fs={18}
             color={COLORS.BLACK40}
-            fw="700"
+            fw="bold"
           />
         </View>
         <CustomTextComponent
-          text={"stamped statement."}
+          text={"physical card replacement."}
           fs={18}
           color={COLORS.BLACK40}
-          fw="700"
+          fw="bold"
         />
       </View>
       {/* <View style={styles.ButtonStyle}>
@@ -174,14 +418,32 @@ export default CardBlockReplace = ({ navigation }) => {
           style={styles.ImageStyle}
         />
       </View> */}
-      <View style={{ justifyContent: "flex-end", marginBottom: 20, marginTop: "auto" }}>
+      <View
+        style={{
+          justifyContent: "flex-end",
+          marginBottom: 20,
+          marginTop: "auto",
+        }}
+      >
         <WithdrawFundsBtn
           text="REQUEST CARD"
-          onPress={() => {
-            // ConfirmTransferScreen
-          }}
+          onPress={() => setIsShowOtpPopup(true)}
         />
       </View>
+      <OtpComponent
+        arr={otpPlaceHolderText}
+        visiblity={isShowOtpPopup}
+        sumNumber={onChangeOtpText}
+        popItem={clearOtp}
+        icon={passVisble}
+        show={onChangePasswordVisibility}
+        time={seconds}
+        color={colorChange}
+        title={strings.OtpTitle}
+        des={`Enter the 4-digit code Zyyp just sent to\nprh***@**yp.io`}
+        closeModal={otpButtonEvent}
+        resendClick={otpResend}
+      />
     </View>
   );
 };
@@ -244,11 +506,11 @@ const styles = StyleSheet.create({
     elevation: 1,
     borderRadius: 8,
   },
-  dropdown1BtnTxtStyle: { color: "#AABBC6", textAlign: "left", fontSize: 16 },
+  dropdown1BtnTxtStyle: { color: "#AABBC6", textAlign: "left", fontSize: 16, fontFamily: 'Poppins-Regular' },
   dropdown1DropdownStyle: { backgroundColor: "#F7F8FA" },
   dropdown1RowStyle: {
     backgroundColor: "#F7F8FA",
     borderBottomColor: "#C5C5C5",
   },
-  dropdown1RowTxtStyle: { color: "#AABBC6", textAlign: "left", fontSize: 18 },
+  dropdown1RowTxtStyle: { color: "#777", textAlign: "left", fontSize: 18 },
 });

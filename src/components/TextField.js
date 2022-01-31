@@ -12,7 +12,8 @@ export default TextField = ({ placeholderContent, maxLength = 100, editable = tr
         flexDirection: 'column',
         justifyContent: 'space-between',
         borderRadius: SIZES.radius / 3,
-        ...FONTS.body4
+        ...FONTS.body4, 
+        marginVertical: 5
       }}>
       <SmallText text={placeholderContent} />
       <View style={{ height: 5 }} />

@@ -54,7 +54,7 @@ export default MobileTextField = ({
             +971
           </Text>
         ) : (
-          <Image style={{ width: 25, height: 25 }} source={image.EmailId} />
+          <Image style={{ width: 25, height: 25, tintColor: "grey" }} source={image.EmailId} />
         )}
         <TextInput
           style={{

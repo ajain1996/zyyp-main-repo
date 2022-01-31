@@ -10,7 +10,7 @@ export default styles = (type, color) =>
     notesTextFieldContainer: {
       paddingHorizontal: moderateScale(8),
       height: moderateScale(90),
-      backgroundColor: 'rgba(245, 247, 250, 0.1)',
+      backgroundColor: '#F7F8FA',
       borderColor: COLORS.secondary,
       borderWidth: 0.5,
       borderRadius: SIZES.radius / 3,

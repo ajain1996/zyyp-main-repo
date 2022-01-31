@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import SvgUri from 'react-native-svg-uri';
 import CustomTextComponent from '../../../components/CustomTextComponent';
 import DateTopTabsComponent from '../../../components/home/DateTopTabsComponent';
 import PersonalCardDateTabsComponent from '../../../components/personalcard/PersonalCardDateTabsComponent';
@@ -15,9 +16,9 @@ export default function PersonalCardMainScreen({ navigation }) {
                 <CustomTextComponent
                     text={text} fs={15} color={"#000"}
                 />
-                <Image
+                <SvgUri
                     source={image}
-                    style={{ width: 14, height: 14, marginLeft: 20 }}
+                    style={{  marginLeft: 20 }}
                 />
             </View>
         );
@@ -75,35 +76,48 @@ export default function PersonalCardMainScreen({ navigation }) {
                         </View>
 
                         <View style={{ marginTop: 10 }}>
-                            <ScrollView horizontal={true} contentContainerStyle={{ alignItems: 'center' }}>
-                                <View style={{ width: 20 }} />
-                                <Image
-                                    source={require("../../../../assets/icons/filter.png")}
-                                    style={{ width: 22, height: 22, marginRight: 12 }}
-                                />
-                                {renderTransactionsBtnBlock(
-                                    require("../../../../assets/icons/down-arrow.png"),
-                                    "Department"
-                                )}
+          <ScrollView
+            horizontal={true}
+            contentContainerStyle={{ alignItems: "center" }}
+          >
+            <View style={{ width: 20 }} />
+            <SvgUri
+              source={require("../../../../assets/svg/filter.svg")}
+              style={{ width: 22, height: 22, marginRight: 12 }}
+            />
+            {renderTransactionsBtnBlock(
+              require("../../../../assets/svg/down-arrow.svg"),
+              "Department",
+              false
+            )}
 
-                                {renderTransactionsBtnBlock(
-                                    require("../../../../assets/icons/down-arrow.png"),
-                                    "Project"
-                                )}
+            {renderTransactionsBtnBlock(
+              require("../../../../assets/svg/search.svg"),
+              "Project",
+              true
+            )}
 
-                                {renderTransactionsBtnBlock(
-                                    require("../../../../assets/icons/down-arrow.png"),
-                                    "Employment"
-                                )}
-                                <View style={{ width: 20 }} />
-                            </ScrollView>
-                        </View>
+            {renderTransactionsBtnBlock(
+              require("../../../../assets/svg/down-arrow.svg"),
+              "Employment",
+              false
+            )}
+            <View style={{ width: 20 }} />
+          </ScrollView>
+        </View>
+        <View
+          style={{
+            width: "100%",
+            // elevation: 17,
+            // shadowColor: '#999',
+            backgroundColor: "#fff",
+          }}
+        >
+          <DateTopTabsComponent navigation={navigation} />
+        </View>
                     </View>
                     {/* <Text /> */}
 
-                    <View style={{ width: '100%', elevation: 7, shadowColor: '#999', backgroundColor: '#fff' }}>
-                        <PersonalCardDateTabsComponent />
-                    </View>
                 </View>
             </ScrollView>
         </>

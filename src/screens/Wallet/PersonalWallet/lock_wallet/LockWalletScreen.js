@@ -6,10 +6,10 @@ import CustomTextComponent from "../../../../components/CustomTextComponent";
 import { COLORS } from "../../../../utils/colors";
 import { windowWidth } from "../../../../utils/utils";
 
-export default function CustomModalComponent({ screenType, setModalVisible, isModalVisible }) {
+export default function CustomModalComponent({ screenType, setModalVisible, isModalVisible, buttonText, mainText, titleText, svrUriOne }) {
 
     return (
-        <TouchableOpacity style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#ecf0f1' }}
+        <TouchableOpacity style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}
             onPress={() => { setModalVisible(false) }}
         >
             <Modal isVisible={isModalVisible}>
@@ -17,17 +17,23 @@ export default function CustomModalComponent({ screenType, setModalVisible, isMo
                     alignItems: "center", paddingHorizontal: 20, backgroundColor: '#fff', paddingVertical: 40,
                     borderRadius: 14
                 }}>
+                    {svrUriOne ? 
                     <SvgUri
                         source={require("../../../../../assets/svg/modal_header.svg")}
                         style={{ width: 50, height: 50, tintColor: COLORS.PURPLE }}
-                    />
+                    /> :
+                    <SvgUri
+                        source={require("../../../../../assets/svg/download-gs.svg")}
+                        // style={{ width: 50, height: 50, tintColor: COLORS.PURPLE }}
+                    /> 
+                    }
                     <View style={{ height: 24 }} />
                     <CustomTextComponent
-                        text={"Unlock Wallet?"} fs={22} color={COLORS.BLACK} fw="600"
+                        text={titleText} fs={22} color={COLORS.BLACK} fw="600"
                     />
                     <View style={{ height: 8 }} />
                     <CustomTextComponent
-                        text={"The wallet will become active and you will be able to do transactions. Are you sure you want to unlock your wallet?"} fs={16} color={COLORS.BLACK} fw="600" textAlign="center"
+                        text={mainText} fs={16} color={COLORS.BLACK} fw="600" textAlign="center"
                     />
                     <View style={{ marginTop: 20 }} />
 
@@ -48,11 +54,11 @@ export default function CustomModalComponent({ screenType, setModalVisible, isMo
                             flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: COLORS.PURPLE
                         }}>
                             <CustomTextComponent
-                                text={"UNLOCK"} fs={15} color={COLORS.WHITE} fw="700"
+                                text={buttonText} fs={15} color={COLORS.WHITE} fw="700"
                             />
-                            <Image
-                                source={require("../../../../../assets/icons/tick.png")}
-                                style={{ width: 20, height: 20, tintColor: COLORS.WHITE }}
+                            <SvgUri
+                                source={require("../../../../../assets/svg/tick.svg")}
+                                // style={{ width: 20, height: 20, tintColor: COLORS.WHITE }}
                             />
                         </TouchableOpacity>
                     </View>

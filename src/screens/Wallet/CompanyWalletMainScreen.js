@@ -8,15 +8,24 @@ import {
   TouchableOpacity,
   Switch,
   Animated,
+  Modal,
 } from "react-native";
 import CustomTextComponent from "../../components/CustomTextComponent";
 import DateTopTabsComponent from "../../components/home/DateTopTabsComponent";
 import SvgUri from "react-native-svg-uri";
+import { COLORS, FONTS, images, SIZES } from "../../constants";
+import { Button, ButtonText, SemiBoldText } from "../../components";
+import { Searchbar } from "react-native-paper";
 
 export default function CompanyWalletMainScreen({ navigation }) {
+  const [selectPopup, setSelectPopup] = useState(false);
+
   const renderTransactionsBtnBlock = (image, text, isLarge) => {
     return (
-      <View style={styles.transactionBtn}>
+      <TouchableOpacity
+        onPress={() => setSelectPopup(true)}
+        style={styles.transactionBtn}
+      >
         <CustomTextComponent text={text} fs={15} color={"#000"} />
         <SvgUri
           source={image}
@@ -26,7 +35,126 @@ export default function CompanyWalletMainScreen({ navigation }) {
             marginLeft: isLarge ? 8 : 20,
           }}
         />
-      </View>
+
+        <Modal visible={selectPopup} transparent>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "flex-end",
+              backgroundColor: "rgba(0, 0, 0, 0.12)",
+            }}
+          >
+            <View
+              style={{
+                backgroundColor: "#FBFBFB",
+                padding: SIZES.padding2 * 2,
+                borderTopRightRadius: SIZES.radius / 1.5,
+                borderTopLeftRadius: SIZES.radius / 1.5,
+              }}
+            >
+              <View
+                style={{
+                  height: 80,
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <SemiBoldText text={"Project Name"} color={COLORS.secondary2} />
+                <TouchableOpacity>
+                  <SemiBoldText text={"Rest"} color={COLORS.primary} />
+                </TouchableOpacity>
+              </View>
+
+              <Searchbar
+                style={{
+                  borderWidth: 1,
+                  borderColor: COLORS.pl,
+                  borderRadius: SIZES.radius / 3,
+                }}
+                // onFocus={() => onSearchClick(filterType)}
+                placeholder={`Search by Project Name`}
+              />
+
+              <Text
+                style={{
+                  ...FONTS.body4,
+                  color: COLORS.secondary2,
+                  paddingVertical: SIZES.base * 3,
+                }}
+              >
+                {`Recently searched Project Name`}
+              </Text>
+
+              <View
+                style={{
+                  paddingBottom: SIZES.padding2 * 2,
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Text
+                  style={{
+                    ...FONTS.e1,
+                    color: COLORS.secondary,
+                    paddingVertical: SIZES.base,
+                    marginLeft: SIZES.width / 3,
+                  }}
+                >
+                  {`No Recent Search found`}
+                </Text>
+                {/* <SelectComponent
+                  key={item?.key}
+                  isSelected={
+                    filterType === 0 || filterType === 3
+                      ? item?.isCategoriesSelected
+                      : filterType === 1 || filterType === 4
+                      ? item?.isStatusSelected
+                      : filterType === 2
+                      ? item?.isDepartmentSelected
+                      : null
+                  }
+                  text={
+                    filterType == 0 || filterType === 3
+                      ? item?.spend_category_name
+                      : filterType === 1 || filterType === 4
+                      ? item?.status.toLowerCase().replace("_", " ")
+                      : filterType === 2
+                      ? item?.department_name
+                      : null
+                  }
+                  selectPress={() => selectItemPress(item, index)}
+                /> */}
+              </View>
+              <View
+                style={{
+                  height: 80,
+                  flexDirection: "row",
+                  justifyContent: "center",
+                }}
+              >
+                <Button
+                  type={3}
+                  color={COLORS.white}
+                  onPress={() => setSelectPopup(false)}
+                >
+                  <ButtonText text={"CANCEL"} color={COLORS.primary} />
+                </Button>
+                <View style={{ flex: 1, marginLeft: SIZES.base }}>
+                  <Button
+                    type={2}
+                    // onPress={selectPress}
+                    icon={images.Enable_icon}
+                    color={COLORS.primary}
+                  >
+                    <ButtonText text={"SELECT"} color={COLORS.white} />
+                  </Button>
+                </View>
+              </View>
+            </View>
+          </View>
+        </Modal>
+      </TouchableOpacity>
     );
   };
 
@@ -58,9 +186,9 @@ export default function CompanyWalletMainScreen({ navigation }) {
           />
         </View>
 
-        <View style={{ paddingHorizontal: 20 }}>
+        <TouchableOpacity style={{ paddingHorizontal: 20 }}>
           <Text style={styles.fontStyle}>Transactions</Text>
-        </View>
+        </TouchableOpacity>
 
         <View style={{ marginTop: 10 }}>
           <ScrollView

@@ -56,6 +56,21 @@ export default styles = (type, color) =>
       justifyContent: "space-between",
       paddingHorizontal: moderateScale(10),
       marginBottom: moderateScale(10)
+    },
+    paymentItemContainer: {
+      height: moderateScale(60),
+      flexDirection: "row",
+      // borderColor: '#fff',
+      // borderWidth: 1,
+
+      borderBottomColor: '#f1f2f4',
+      borderBottomWidth: 8,
+      // borderRadius: SIZES.radius / 3,
+      marginHorizontal: moderateScale(20),
+      alignItems: "center",
+      justifyContent: "space-between",
+      // paddingHorizontal: moderateScale(10),
+      // marginBottom: moderateScale(10)
     }
 
   });

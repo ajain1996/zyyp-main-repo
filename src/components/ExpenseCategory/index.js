@@ -5,7 +5,7 @@ import { images } from "../../constants";
 import styles from './expenseCategory.style';
 import { ExpenseTag } from "./expenseTag";
 
-export const ExpenseCategory = ({ type,hasImage, onItemSelected,onClose, placeholderContent, text, bgColor, color, placeholder, onChangeText }) => {
+export const ExpenseCategory = ({ type,hasImage, onItemSelected,onClose, placeholderContent, text, bgColor, color, placeholder, noIcon }) => {
     return (<TouchableOpacity onPress={onItemSelected} style={styles().container}>
         <SmallText text={placeholderContent} />
         <View
@@ -13,7 +13,7 @@ export const ExpenseCategory = ({ type,hasImage, onItemSelected,onClose, placeho
         >
             {type === 1 ? <View><PlaceHolderText text={placeholder} /></View> :
                 <ExpenseTag hasImage={hasImage} bgColor={bgColor} text={text} color={color} onClose={onClose} />}
-            <Image source={images.searchIcon} style={styles().imageIcon} />
+            {noIcon ? <></> : <Image source={images.searchIcon} style={styles().imageIcon} />}
         </View>
     </TouchableOpacity>);
 }
