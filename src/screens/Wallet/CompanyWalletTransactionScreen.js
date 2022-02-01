@@ -19,13 +19,13 @@ export default function CompanyWalletTransactionScreen({navigation, route}) {
               text="ITC Hotel"
               fs={22}
               color={COLORS.BLACK}
-              fw="700"
+              fw="bold"
             />
             <CustomTextComponent
               text="Private Limited"
               fs={22}
               color={COLORS.BLACK}
-              fw="700"
+              fw="bold"
             />
             <View style={{height: 8}} />
             <View style={{flexDirection: "row"}}>

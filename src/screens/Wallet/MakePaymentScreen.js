@@ -488,7 +488,6 @@ export const MainHeaderComponent = ({
           </View>
         </View>
       </View>
-      <Text />
 
       <View style={{ alignItems: "center", marginTop: 20 }}>
         <View style={{ alignItems: "flex-start" }}>

@@ -251,7 +251,7 @@ const OtpComponent = ({
           <View
             style={{
               alignItems: "center",
-              height: 70,
+              height: 80,
               backgroundColor: COLORS.white,
               shadowColor: COLORS.black,
               shadowOffset: {

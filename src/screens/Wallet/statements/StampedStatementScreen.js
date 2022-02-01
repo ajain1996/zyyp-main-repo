@@ -133,13 +133,13 @@ export default function StampedStatementScreen({ navigation }) {
                     />
                     <Text />
 
-                    <View style={{ alignItems: 'center', elevation: 30 }}>
+                    <View style={{ alignItems: 'center', elevation: 30, top: 40 }}>
                         <WithdrawFundsBtn
                             text="SUBMIT REQUEST"
                             onPress={() => { navigation.navigate("StatementInputCodeScreen") }}
                         />
                     </View>
-                    <View style={{ height: 50 }} />
+                    <View style={{ height: 150 }} />
 
                 </View>
             </ScrollView>

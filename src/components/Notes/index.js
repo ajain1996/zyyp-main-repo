@@ -10,14 +10,15 @@ export const Notes = ({
   onChangeText,
   placeholder,
   popup = false,
+  borCol
 }) => {
   return (
     <View style={styles().container}>
-      <SmallText text={placeholderContent} />
+      <SmallText text={placeholderContent} color="#000" />
       <View
         style={[
           styles().notesTextFieldContainer,
-          { height: popup ? moderateScale(160) : moderateScale(90) },
+          { height: popup ? moderateScale(160) : moderateScale(90), borderColor: borCol ? 'transparent' : '#85949F' },
         ]}
       >
         <TextInput

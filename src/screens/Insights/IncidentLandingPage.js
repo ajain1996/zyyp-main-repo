@@ -1,5 +1,11 @@
 import React from "react";
-import { View, FlatList, TouchableOpacity, Text, StyleSheet } from "react-native";
+import {
+  View,
+  FlatList,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+} from "react-native";
 import { moderateScale } from "react-native-size-matters";
 import { TransactionItem } from "../../components/ExpenseTransaction/transactionItem";
 import Icon1 from "react-native-vector-icons/AntDesign";
@@ -73,32 +79,15 @@ const jsonList = [
 export default function IncidentLandingPage({ navigation }) {
   const renderItem = ({ item }) => (
     <TouchableOpacity
-      // onPress={unClaimedTransactionSelectionAction}
+      onPress={() => navigation.navigate('IncidentDetails')}
       style={[
         styles2.itemContainer,
         {
           backgroundColor: item.selected ? "#F5EFFD" : COLORS.white,
-          borderColor:  COLORS.inner_line,
+          borderColor: COLORS.white,
         },
       ]}
     >
-      {item.selected ? (
-        <View
-          style={[
-            styles2.checkbox,
-            {
-              backgroundColor: "#E5D6FA",
-              alignItems: "center",
-              justifyContent: "center",
-            },
-          ]}
-        >
-          <Image source={images.tick} style={{ width: 20, height: 20 }} />
-        </View>
-      ) : (
-        <View style={styles2.checkbox} />
-      )}
-
       <View style={{ width: 10 }} />
       <View
         style={{
@@ -113,24 +102,24 @@ export default function IncidentLandingPage({ navigation }) {
             style={{
               fontSize: 14,
               lineHeight: 15,
-              fontWeight: "bold",
+              fontWeight: "400",
               fontFamily: "Poppins-Regular",
               color: "#323F4B",
             }}
           >
-            ITC Hotel
+            #INCI2983742983
           </Text>
           <View style={{ height: 5 }} />
           <Text
             style={{
               fontSize: 12,
               lineHeight: 14,
-              fontWeight: "bold",
+              fontWeight: "400",
               fontFamily: "Poppins-Regular",
               color: "#7B8794",
             }}
           >
-            Aug 12, 2021 | 02:30pm
+            31 Dec, 2021{" "}
           </Text>
         </View>
         <View>
@@ -139,30 +128,33 @@ export default function IncidentLandingPage({ navigation }) {
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "center",
+              backgroundColor: '#FFE9DB',
+              borderRadius: 15,
+              paddingHorizontal: 10,
+              paddingVertical: 2 
             }}
           >
+            <View
+              style={{
+                backgroundColor: '#FF914D',
+                width: 5  ,
+                height: 5 ,
+                borderRadius: 10,
+                marginRight: 2
+              }}
+            >
+            </View>
             <Text
               style={{
                 fontSize: 10,
-                lineHeight: 11,
-                fontWeight: "700",
+                // lineHeight: 10,
+                fontWeight: "500",
                 fontFamily: "Poppins-Regular",
-                color: "#7B8794",
-              }}
-            >
-              AED
-            </Text>
-            <Text
-              style={{
-                fontSize: 16,
-                lineHeight: 18,
-                fontWeight: "700",
-                fontFamily: "Poppins-Regular",
-                color: "#323F4B",
+                color: "#FF914D",
               }}
             >
               {" "}
-              321
+              Pending
             </Text>
           </View>
           <View style={{ height: 5 }} />
@@ -175,16 +167,16 @@ export default function IncidentLandingPage({ navigation }) {
               color: "#323F4B",
             }}
           >
-            xxx6537
+            
           </Text>
         </View>
       </View>
     </TouchableOpacity>
   );
 
-  const itemSelection = ({ type, item }) => {
-    unClaimedTransactionSelectionAction({ type, item });
-  };
+  // const itemSelection = ({ type, item }) => {
+  //   unClaimedTransactionSelectionAction({ type, item });
+  // };
 
   return (
     <>
@@ -227,7 +219,7 @@ export default function IncidentLandingPage({ navigation }) {
               alignItems: "center",
               justifyContent: "center",
             }}
-            // onPress={deletePress}
+            onPress={() => navigation.navigate('ReportIncident')}
           >
             <Icon1 name={"plus"} size={24} color={"#85949F"} />
           </TouchableOpacity>
@@ -240,7 +232,8 @@ export default function IncidentLandingPage({ navigation }) {
             flex: 1,
             paddingHorizontal: moderateScale(20),
             paddingVertical: 10,
-            marginBottom: 13
+            marginBottom: 13,
+            backgroundColor: "#F7F5FA",
           }}
           keyExtractor={(item, index) => `${index}`}
           renderItem={renderItem}
@@ -282,7 +275,7 @@ const styles2 = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: COLORS.white,
     marginBottom: moderateScale(10),
-    borderRadius: 4,
+    borderRadius: 8,
     shadowColor: COLORS.pl,
     shadowOffset: {
       width: 5,

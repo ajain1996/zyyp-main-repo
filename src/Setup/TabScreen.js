@@ -52,6 +52,8 @@ import MakePaymentScreen from "../screens/Wallet/MakePaymentScreen";
 import { NewPaymentRecepient } from "../screens/Payment/NewPaymentRecepient";
 import NewRecepientAddFundsScreen from "../screens/Wallet/statements/NewRecepientAddFundsScreen";
 import IncidentLandingPage from "../screens/Insights/IncidentLandingPage";
+import IncidentDetails from "../screens/Insights/IncidentDetails";
+import ReportIncident from "../screens/Insights/ReportIncident";
 
 const Tab = createBottomTabNavigator();
 const DashboardStack = createNativeStackNavigator();
@@ -408,11 +410,16 @@ const InsightsScreen = ({}) => {
         component={IncidentLandingPage}
         options={{ headerShown: false }}
       />
-      {/* <ExpenseStack.Screen
-        name={"Insights"}
-        component={Insights}
+      <ExpenseStack.Screen
+        name={"IncidentDetails"}
+        component={IncidentDetails}
         options={{ headerShown: false }}
-      /> */}
+      />
+      <ExpenseStack.Screen
+        name={"ReportIncident"}
+        component={ReportIncident}
+        options={{ headerShown: false }}
+      />
     </InsightsStack.Navigator>
   );
 };

@@ -8,7 +8,7 @@ export const SemiBoldText = ({ text, color = COLORS.secondary }) => {
   return <Text style={[styles.textView, { color: color }]}>{text}</Text>;
 };
 
-export const SmallText = ({ text, color = COLORS.secondary2 }) => {
+export const SmallText = ({ text, color = color ? color : COLORS.secondary2 }) => {
   return <Text numberOfLines={line=1} style={[styles.boxHeader, { color: color }]}>{text}</Text>;
 };
 export const ButtonText = ({ text, color, onPress }) => {

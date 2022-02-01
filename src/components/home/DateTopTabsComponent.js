@@ -14,9 +14,10 @@ import { Card } from "react-native-paper";
 import CustomTextComponent from "../CustomTextComponent";
 import { windowHeight, windowWidth } from "../../utils/utils";
 import SvgUri from "react-native-svg-uri";
+import { showWeekDay } from "react-native-paper-dates/lib/typescript/src/Date/dateUtils";
 const Tab = createMaterialTopTabNavigator();
 
-export default function DateTopTabsComponent({ navigation }) {
+export default function DateTopTabsComponent({ navigation, showEmployee }) {
   const [dateBox, setDateBox] = useState("DEC22");
 
   return (
@@ -208,7 +209,10 @@ export default function DateTopTabsComponent({ navigation }) {
       </View>
 
       {dateBox === "OCT22" ? (
-        <BuildMonthComponent navigation={navigation} />
+        <BuildMonthComponent
+          navigation={navigation}
+          showEmployee={showEmployee}
+        />
       ) : (
         <></>
       )}
@@ -216,7 +220,7 @@ export default function DateTopTabsComponent({ navigation }) {
   );
 }
 
-const BuildMonthComponent = ({ navigation }) => {
+const BuildMonthComponent = ({ navigation, showEmployee }) => {
   return (
     <View
       style={{
@@ -232,17 +236,50 @@ const BuildMonthComponent = ({ navigation }) => {
         color={"rgba(133, 148, 159, 1)"}
       />
       <BuildSingleMerchantComponent
+        showEmployee={showEmployee}
         onPress={() => {
           navigation.navigate("CompanyWalletTransactionScreen");
         }}
       />
-      <BuildSingleMerchantComponent />
-      <BuildSingleMerchantComponent />
+      <BuildSingleMerchantComponent showEmployee={showEmployee} />
+      <BuildSingleMerchantComponent showEmployee={showEmployee} />
     </View>
   );
 };
 
-const BuildSingleMerchantComponent = ({ onPress }) => {
+const BuildSingleMerchantComponent = ({ onPress, showEmployee }) => {
+  const employeeDetail = () => {
+    return (
+      <>
+        <View
+          style={{
+            borderTopWidth: 1,
+            borderColor: "#eee",
+            flexDirection: "row",
+            alignItems: "center",
+            marginTop: 12,
+            paddingTop: 12,
+          }}
+        >
+          <Image
+            source={require("../../../assets/images/e1.png")}
+            style={{
+              width: 26,
+              height: 26,
+              marginHorizontal: 4,
+              borderRadius: 100,
+            }}
+          />
+          <CustomTextComponent
+            text="Employee Name | Department"
+            fs={13}
+            color={"grey"}
+          />
+        </View>
+      </>
+    );
+  };
+
   return (
     <View style={{ marginVertical: 5 }}>
       <TouchableHighlight onPress={onPress}>
@@ -277,7 +314,7 @@ const BuildSingleMerchantComponent = ({ onPress }) => {
 
               <View style={{ width: windowWidth / 2.6 }}>
                 <CustomTextComponent
-                  text="Merchant Name Private Limited"
+                  text="Merchant Name LLC"
                   fs={16}
                   color={"#000"}
                 />
@@ -355,31 +392,7 @@ const BuildSingleMerchantComponent = ({ onPress }) => {
             </View>
           </View>
 
-          <View
-            style={{
-              borderTopWidth: 1,
-              borderColor: "#eee",
-              flexDirection: "row",
-              alignItems: "center",
-              marginTop: 12,
-              paddingTop: 12,
-            }}
-          >
-            <Image
-              source={require("../../../assets/images/e1.png")}
-              style={{
-                width: 26,
-                height: 26,
-                marginHorizontal: 4,
-                borderRadius: 100,
-              }}
-            />
-            <CustomTextComponent
-              text="Employee Name | Department"
-              fs={13}
-              color={"grey"}
-            />
-          </View>
+          {showEmployee ? <View /> : employeeDetail()}
         </Card>
       </TouchableHighlight>
     </View>

@@ -26,8 +26,9 @@ const styles = StyleSheet.create({
     inputContainer: {
         width: '100%',
         backgroundColor: '#F7F8FA',
-        borderRadius: 16,
+        borderRadius: 8,
         paddingHorizontal: 12,
+        // elevation: 1
     },
     iconStyle: {
         padding: 10,

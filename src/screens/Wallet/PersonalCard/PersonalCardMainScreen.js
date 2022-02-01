@@ -87,7 +87,7 @@ export default function PersonalCardMainScreen({ navigation }) {
             />
             {renderTransactionsBtnBlock(
               require("../../../../assets/svg/down-arrow.svg"),
-              "Department",
+              "Spend Category",
               false
             )}
 
@@ -113,7 +113,7 @@ export default function PersonalCardMainScreen({ navigation }) {
             backgroundColor: "#fff",
           }}
         >
-          <DateTopTabsComponent navigation={navigation} />
+          <DateTopTabsComponent navigation={navigation} showEmployee={true} />
         </View>
                     </View>
                     {/* <Text /> */}

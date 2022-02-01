@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,17 +7,17 @@ import {
   StyleSheet,
   TouchableOpacity,
   BackHandler,
-} from 'react-native';
-import { useDispatch } from 'react-redux';
-import { OtpComponent } from '../../components';
-import CustomTextComponent from '../../components/CustomTextComponent';
-import { strings } from '../../constants';
-import {COLORS} from '../../utils/colors';
-import {windowHeight, windowWidth} from '../../utils/utils';
-import {CompanyWalletTransactionHeader} from './CompanyWalletTransactionScreen';
+} from "react-native";
+import { useDispatch } from "react-redux";
+import { OtpComponent } from "../../components";
+import CustomTextComponent from "../../components/CustomTextComponent";
+import { strings } from "../../constants";
+import { COLORS } from "../../utils/colors";
+import { windowHeight, windowWidth } from "../../utils/utils";
+import Swipeable from "react-native-gesture-handler/Swipeable";
+import { CompanyWalletTransactionHeader } from "./CompanyWalletTransactionScreen";
 
-export default function ConfirmTransferScreen({navigation}) {
-  
+export default function ConfirmTransferScreen({ navigation }) {
   const dispatch = useDispatch();
   //--- Values
   const [orgName, setOrgName] = useState("");
@@ -271,17 +271,21 @@ export default function ConfirmTransferScreen({navigation}) {
         text="Confirm Transfer"
       />
       <ScrollView
-        contentContainerStyle={{height: windowHeight, backgroundColor: '#fff'}}>
-        <View style={{alignItems: 'center', marginTop: 60}}>
+        contentContainerStyle={{
+          height: windowHeight,
+          backgroundColor: "#fff",
+        }}
+      >
+        <View style={{ alignItems: "center", marginTop: 60 }}>
           <View style={styles.transferMainContainer}>
-            <View style={{alignItems: 'center'}}>
+            <View style={{ alignItems: "center" }}>
               <View style={styles.transferImage}>
                 <Image
-                  source={require('../../../assets/svg/transfer.png')}
-                  style={{width: 26, height: 36, tintColor: '#fff'}}
+                  source={require("../../../assets/svg/transfer.png")}
+                  style={{ width: 26, height: 36, tintColor: "#fff" }}
                 />
               </View>
-              <View style={{height: 30}} />
+              <View style={{ height: 30 }} />
 
               <CustomTextComponent
                 text="37,000.00"
@@ -299,15 +303,17 @@ export default function ConfirmTransferScreen({navigation}) {
           <View
             style={[
               styles.transferMainContainer,
-              {marginTop: -2, alignItems: 'stretch'},
-            ]}>
+              { marginTop: -2, alignItems: "stretch" },
+            ]}
+          >
             <View
               style={{
                 marginTop: -20,
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}>
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
               <CustomTextComponent
                 text="....."
                 fs={28}
@@ -317,10 +323,11 @@ export default function ConfirmTransferScreen({navigation}) {
               />
               <View
                 style={{
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
                 <CustomTextComponent
                   text="1500.00"
                   fs={28}
@@ -328,11 +335,11 @@ export default function ConfirmTransferScreen({navigation}) {
                   ff="Montserrat-Regular"
                 />
                 <Image
-                  source={require('../../../assets/icons/downarrow.png')}
+                  source={require("../../../assets/icons/downarrow.png")}
                   style={{
                     width: 24,
                     height: 24,
-                    tintColor: '#00C2CB',
+                    tintColor: "#00C2CB",
                     marginLeft: 12,
                   }}
                 />
@@ -345,9 +352,9 @@ export default function ConfirmTransferScreen({navigation}) {
                 mt={-14}
               />
             </View>
-            <View style={{height: 60}} />
+            <View style={{ height: 60 }} />
 
-            <View style={{alignItems: 'center'}}>
+            <View style={{ alignItems: "center" }}>
               <CustomTextComponent
                 text="321.00"
                 fs={23}
@@ -362,22 +369,22 @@ export default function ConfirmTransferScreen({navigation}) {
             </View>
           </View>
         </View>
-        <View style={{height: windowHeight / 5.5}} />
+        <View style={{ height: windowHeight / 5.5 }} />
 
         <OtpComponent
-        arr={otpPlaceHolderText}
-        visiblity={isShowOtpPopup}
-        sumNumber={onChangeOtpText}
-        popItem={clearOtp}
-        icon={passVisble}
-        show={onChangePasswordVisibility}
-        time={seconds}
-        color={colorChange}
-        title={strings.OtpTitle}
-        des={`Enter the 4-digit code Zyyp just sent to\nprh***@**yp.io`}
-        closeModal={otpButtonEvent}
-        resendClick={otpResend}
-      />
+          arr={otpPlaceHolderText}
+          visiblity={isShowOtpPopup}
+          sumNumber={onChangeOtpText}
+          popItem={clearOtp}
+          icon={passVisble}
+          show={onChangePasswordVisibility}
+          time={seconds}
+          color={colorChange}
+          title={strings.OtpTitle}
+          des={`Enter the 4-digit code Zyyp just sent to\nprh***@**yp.io`}
+          closeModal={otpButtonEvent}
+          resendClick={otpResend}
+        />
 
         <SwipeToAddBtn
           text="SWIPE TO ADD"
@@ -389,44 +396,80 @@ export default function ConfirmTransferScreen({navigation}) {
   );
 }
 
-export const SwipeToAddBtn = ({text, onPress}) => {
-  return (
-    <TouchableOpacity
-      activeOpacity={0.9}
-      style={{
-        width: windowWidth - 40,
-        paddingVertical: 10,
-        justifyContent: 'center',
-        paddingHorizontal: 10,
-        backgroundColor: '#7B35E7',
-        marginHorizontal: 20,
-        borderRadius: 10,
-      }}
-      onPress={onPress}>
+export const SwipeToAddBtn = ({ text, onPress }) => {
+  const LeftSwipeActions = () => {
+    return (
       <View
         style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}>
+          flex: 1,
+          backgroundColor: "#ccffbd",
+          justifyContent: "center",
+        }}
+      >
+        <Text
+          style={{
+            color: "#40394a",
+            paddingHorizontal: 10,
+            fontWeight: "600",
+            paddingHorizontal: 30,
+            paddingVertical: 20,
+          }}
+        >
+          Bookmark
+        </Text>
+      </View>
+    );
+  };
+
+  const swipeFromLeftOpen = () => {
+    alert("Swipe from left");
+  };
+
+  return (
+    <Swipeable
+      renderLeftActions={LeftSwipeActions}
+      onSwipeableLeftOpen={swipeFromLeftOpen}
+    >
+      <TouchableOpacity
+        activeOpacity={0.9}
+        style={{
+          width: windowWidth - 40,
+          paddingVertical: 10,
+          justifyContent: "center",
+          paddingHorizontal: 10,
+          backgroundColor: "#7B35E7",
+          marginHorizontal: 20,
+          borderRadius: 10,
+        }}
+        onPress={onPress}
+      >
         <View
           style={{
-            width: 56,
-            height: 56,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: 10,
-            backgroundColor: '#fff',
-          }}>
-          <Image
-            source={require('../../../assets/icons/right-arrow.png')}
-            style={{width: 18, height: 18, tintColor: '#7B35E7'}}
-          />
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <View
+            style={{
+              width: 56,
+              height: 56,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 10,
+              backgroundColor: "#fff",
+            }}
+          >
+            <Image
+              source={require("../../../assets/icons/right-arrow.png")}
+              style={{ width: 18, height: 18, tintColor: "#7B35E7" }}
+            />
+          </View>
+          <CustomTextComponent text={text} fs={18} color={"#fff"} fw="700" />
+          <CustomTextComponent text={"t"} fs={17} color={"#7B35E7"} fw="700" />
         </View>
-        <CustomTextComponent text={text} fs={18} color={'#fff'} fw="700" />
-        <CustomTextComponent text={'t'} fs={17} color={'#7B35E7'} fw="700" />
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </Swipeable>
   );
 };
 
@@ -435,18 +478,18 @@ const styles = StyleSheet.create({
     width: windowWidth - 60,
     paddingHorizontal: 30,
     elevation: 10,
-    shadowColor: '#999',
-    backgroundColor: '#fff',
+    shadowColor: "#999",
+    backgroundColor: "#fff",
     borderRadius: 20,
     paddingBottom: 80,
-    alignItems: 'center',
+    alignItems: "center",
   },
   transferImage: {
     width: 70,
     height: 70,
-    backgroundColor: '#7B35E7',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#7B35E7",
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: 20,
     marginTop: -30,
   },

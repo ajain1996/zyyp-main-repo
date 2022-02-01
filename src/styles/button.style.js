@@ -10,7 +10,7 @@ export default styles = (type, color) =>
     button: {
       flexDirection: "row",
       backgroundColor: color,
-      height: moderateScale(45),
+      height: moderateScale(55),
       alignItems: "center",
       borderRadius: SIZES.radius / 3,
       borderColor: COLORS.primary,
