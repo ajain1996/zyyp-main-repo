@@ -122,7 +122,7 @@ export default function PersonalWalletMainScreen({ navigation }) {
   );
 }
 
-const MainHeaderComponent = ({navigation}) => {
+const MainHeaderComponent = ({ navigation }) => {
   return (
     <View style={styles.headerContainer}>
       <View
@@ -165,14 +165,22 @@ const MainHeaderComponent = ({navigation}) => {
       <Text />
 
       <View style={{ alignItems: "center", marginTop: 20 }}>
-        <View style={{ alignItems: "flex-start" }}>
-          <CustomTextComponent text="AED" fs={18} color={"grey"} />
-          <CustomTextComponent
-            text="321.00"
-            fs={30}
-            color={"#000"}
-            ff="Montserrat-Bold"
-          />
+        <View style={{ alignItems: "center" }}>
+          <CustomTextComponent text="AED" fs={20} color={"grey"} />
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <SvgUri
+              source={require("../../../../assets/svg/lock.svg")}
+              style={{
+                marginHorizontal: 10
+              }}
+            />
+            <CustomTextComponent
+              text="321.00"
+              fs={30}
+              color={"#000"}
+              ff="Montserrat-Bold"
+            />
+          </View>
         </View>
       </View>
     </View>
@@ -182,7 +190,7 @@ const MainHeaderComponent = ({navigation}) => {
 const BuildAddFundsComponent = ({ navigation }) => {
   const [isModalVisible, setModalVisible] = useState(false);
 
-  const renderSingleFundComponent = (image, text, onPress) => {
+  const renderSingleFundComponent = (image, text, onPress, color) => {
     return (
       <TouchableOpacity style={{ alignItems: "center" }} onPress={onPress}>
         <SvgUri
@@ -190,11 +198,11 @@ const BuildAddFundsComponent = ({ navigation }) => {
           style={{
             width: 28,
             height: 28,
-            tintColor: "#85949F",
+            tintColor: "#FF914D",
             marginBottom: 4,
           }}
         />
-        <CustomTextComponent text={text} fs={13} color={"#85949F"} fw="700" />
+        <CustomTextComponent text={text} fs={13} color={color} fw="bold" />
       </TouchableOpacity>
     );
   };
@@ -213,15 +221,17 @@ const BuildAddFundsComponent = ({ navigation }) => {
           "ADD FUNDS",
           () => {
             navigation.navigate("StatementInputCodeScreen");
-          }
+          },
+          "#85949F"
         )}
 
         {renderSingleFundComponent(
-          require("../../../../assets/svg/lockwallet.svg"),
-          "LOCK WALLET",
+          require("../../../../assets/svg/unlock.svg"),
+          "UNLOCK WALLET",
           () => {
             setModalVisible(true);
-          }
+          },
+          "#FF914D"
         )}
       </View>
 
@@ -268,11 +278,14 @@ const BuildAddFundsComponent = ({ navigation }) => {
 
       <CustomModalComponent
         screenType="lock_wallet"
+        svrUriOne={true}
         setModalVisible={setModalVisible}
         isModalVisible={isModalVisible}
-        buttonText={'UNLOCK'}
+        buttonText={"UNLOCK"}
         titleText={"Unlock Wallet?"}
-        mainText={'The wallet will become active and you will be able to do transactions. Are you sure you want to unlock your wallet?'}
+        mainText={
+          "The wallet will become active and you will be able to do transactions. Are you sure you want to unlock your wallet?"
+        }
       />
     </View>
   );

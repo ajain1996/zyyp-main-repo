@@ -14,7 +14,8 @@ import CustomTextComponent from "../../components/CustomTextComponent";
 import { strings } from "../../constants";
 import { COLORS } from "../../utils/colors";
 import { windowHeight, windowWidth } from "../../utils/utils";
-import Swipeable from "react-native-gesture-handler/Swipeable";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Swipeable } from "react-native-gesture-handler";
 import { CompanyWalletTransactionHeader } from "./CompanyWalletTransactionScreen";
 
 export default function ConfirmTransferScreen({ navigation }) {
@@ -397,39 +398,8 @@ export default function ConfirmTransferScreen({ navigation }) {
 }
 
 export const SwipeToAddBtn = ({ text, onPress }) => {
-  const LeftSwipeActions = () => {
+  const LeftSwipeActions = ({text}) => {
     return (
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: "#ccffbd",
-          justifyContent: "center",
-        }}
-      >
-        <Text
-          style={{
-            color: "#40394a",
-            paddingHorizontal: 10,
-            fontWeight: "600",
-            paddingHorizontal: 30,
-            paddingVertical: 20,
-          }}
-        >
-          Bookmark
-        </Text>
-      </View>
-    );
-  };
-
-  const swipeFromLeftOpen = () => {
-    alert("Swipe from left");
-  };
-
-  return (
-    <Swipeable
-      renderLeftActions={LeftSwipeActions}
-      onSwipeableLeftOpen={swipeFromLeftOpen}
-    >
       <TouchableOpacity
         activeOpacity={0.9}
         style={{
@@ -441,35 +411,77 @@ export const SwipeToAddBtn = ({ text, onPress }) => {
           marginHorizontal: 20,
           borderRadius: 10,
         }}
-        onPress={onPress}
+        // onPress={onPress}
       >
         <View
           style={{
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-between",
+            justifyContent: "center",
           }}
+        >
+          <CustomTextComponent text={'SWIPE TO ADD'} fs={18} color={"#fff"} fw="700" />
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
+  const swipeFromLeftOpen = () => {
+    onPress();
+  };
+
+  return (
+    <GestureHandlerRootView>
+      <Swipeable
+        renderLeftActions={LeftSwipeActions}
+        onSwipeableLeftOpen={swipeFromLeftOpen}
+      >
+        <TouchableOpacity
+          activeOpacity={0.9}
+          style={{
+            width: windowWidth - 40,
+            paddingVertical: 10,
+            justifyContent: "center",
+            paddingHorizontal: 10,
+            backgroundColor: "#7B35E7",
+            marginHorizontal: 20,
+            borderRadius: 10,
+          }}
+          // onPress={onPress}
         >
           <View
             style={{
-              width: 56,
-              height: 56,
-              justifyContent: "center",
+              flexDirection: "row",
               alignItems: "center",
-              borderRadius: 10,
-              backgroundColor: "#fff",
+              justifyContent: "space-between",
             }}
           >
-            <Image
-              source={require("../../../assets/icons/right-arrow.png")}
-              style={{ width: 18, height: 18, tintColor: "#7B35E7" }}
+            <View
+              style={{
+                width: 56,
+                height: 56,
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: 10,
+                backgroundColor: "#fff",
+              }}
+            >
+              <Image
+                source={require("../../../assets/icons/right-arrow.png")}
+                style={{ width: 18, height: 18, tintColor: "#7B35E7" }}
+              />
+            </View>
+            <CustomTextComponent text={text} fs={18} color={"#fff"} fw="700" />
+            <CustomTextComponent
+              text={"t"}
+              fs={17}
+              color={"#7B35E7"}
+              fw="700"
             />
           </View>
-          <CustomTextComponent text={text} fs={18} color={"#fff"} fw="700" />
-          <CustomTextComponent text={"t"} fs={17} color={"#7B35E7"} fw="700" />
-        </View>
-      </TouchableOpacity>
-    </Swipeable>
+        </TouchableOpacity>
+      </Swipeable>
+    </GestureHandlerRootView>
   );
 };
 

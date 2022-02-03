@@ -67,7 +67,7 @@ export default function MakePaymentScreen({ navigation }) {
                 borderWidth: 1,
                 borderColor: "#7B8794",
                 borderRadius: 10,
-                backgroundColor: "#fff",
+                backgroundColor: "#F7F8FA",
               }}
             >
               <View
@@ -85,6 +85,7 @@ export default function MakePaymentScreen({ navigation }) {
                   placeholderText="Search name, mobile, email"
                   height={45}
                   bgColor="#fff"
+                  checkInputImage={true}
                   onChangeText={(val) => {
                     // setEmail(val);
                     // setEmailError("");
