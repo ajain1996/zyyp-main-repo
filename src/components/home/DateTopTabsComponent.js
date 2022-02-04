@@ -17,8 +17,57 @@ import SvgUri from "react-native-svg-uri";
 import { showWeekDay } from "react-native-paper-dates/lib/typescript/src/Date/dateUtils";
 const Tab = createMaterialTopTabNavigator();
 
+const BuildTabComponent = ({ text, selectedVal, val, onPress }) => {
+  return (
+    <TouchableOpacity onPress={onPress} activeOpacity={0.5} style={{
+      width: windowWidth / 5,
+      paddingVertical: 2,
+      alignItems: "center",
+    }}>
+      <View style={{ height: 10 }} />
+      <CustomTextComponent
+        text={text}
+        fs={13}
+        fw={"bold"}
+        color={selectedVal === val ? "#000" : "#999"}
+      />
+      {selectedVal === val
+        ? <View style={{ width: "74%", height: 3, backgroundColor: "#7B35E7", marginTop: 6 }} />
+        : <></>}
+    </TouchableOpacity>
+  );
+}
+
 export default function DateTopTabsComponent({ navigation, showEmployee }) {
   const [dateBox, setDateBox] = useState("DEC22");
+
+  const [merchantDetails, setMerchantDetails] = useState([
+    {
+      "amount": 100,
+      "card_last_4_digits": "1234",
+      "counter_party_account_label": "7827",
+      "counter_party_account_name": "Merchant Name",
+      "currency": "AED",
+      "department_name": "Department Name",
+      "employee_name": "Employee Name",
+      "expense_id": "0ujsszwN8NRY24Y",
+      "first_party_account_label": "5038",
+      "first_party_account_name": "ITC Hotel Pvt Ltd",
+      "merchant_city": "Dubai",
+      "merchant_country": "UAE",
+      "merchant_name": "CARD ACCEPTOR Name",
+      "mode": "CASH",
+      "receipt_document_url": "https://example.com/zyypdoc/5/8/receipt123",
+      "receipt_in_company_name": true,
+      "receipt_number": "234551234561008",
+      "spend_category_icon": "meals.png",
+      "spend_category_name": "Food",
+      "transaction_direction": "DR",
+      "transaction_id": "0ujsswThIGTUYm2K8FjOOfXtY1K",
+      "transaction_status": "UNCLAIMED",
+      "transaction_timestamp": "2021-01-02T19:42:32.987Z"
+    }
+  ]);
 
   return (
     <View style={{ backgroundColor: "#fff" }}>
@@ -35,176 +84,47 @@ export default function DateTopTabsComponent({ navigation, showEmployee }) {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
         >
-          <TouchableOpacity
-            activeOpacity={0.5}
-            style={{
-              width: windowWidth / 5,
-              paddingVertical: 2,
-              alignItems: "center",
-            }}
-            onPress={() => {
-              setDateBox("OCT22");
-            }}
-          >
-            <View style={{ height: 10 }} />
-            {dateBox === "OCT22" ? (
-              <CustomTextComponent
-                text={"OCT '22"}
-                fs={13}
-                fw={"bold"}
-                color={"#000"}
-              />
-            ) : (
-              <CustomTextComponent
-                text={"OCT '22"}
-                fs={13}
-                fw={"900"}
-                color={"#999"}
-              />
-            )}
-            {dateBox === "OCT22" ? (
-              <View
-                style={{
-                  width: "74%",
-                  height: 3,
-                  backgroundColor: "#7B35E7",
-                  marginTop: 6,
-                }}
-              />
-            ) : (
-              <></>
-            )}
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.5}
-            style={{
-              width: windowWidth / 5,
-              paddingVertical: 2,
-              alignItems: "center",
-            }}
-            onPress={() => {
-              setDateBox("NOV22");
-            }}
-          >
-            <View style={{ height: 10 }} />
-            <CustomTextComponent text={"NOV '22"} fs={13} color={"#999"} />
-            {dateBox === "NOV22" ? (
-              <View
-                style={{
-                  width: "74%",
-                  height: 3,
-                  backgroundColor: "#7B35E7",
-                  marginTop: 6,
-                }}
-              />
-            ) : (
-              <></>
-            )}
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.5}
-            style={{
-              width: windowWidth / 5,
-              paddingVertical: 2,
-              alignItems: "center",
-            }}
-            onPress={() => {
-              setDateBox("DEC22");
-            }}
-          >
-            <View style={{ height: 10 }} />
-            <CustomTextComponent text={"DEC '22"} fs={13} color={"#999"} />
-            {dateBox === "DEC22" ? (
-              <View
-                style={{
-                  width: "74%",
-                  height: 3,
-                  backgroundColor: "#7B35E7",
-                  marginTop: 6,
-                }}
-              />
-            ) : (
-              <></>
-            )}
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.5}
-            style={{
-              width: windowWidth / 5,
-              paddingVertical: 2,
-              alignItems: "center",
-            }}
-            onPress={() => {
-              setDateBox("JAN22");
-            }}
-          >
-            <View style={{ height: 10 }} />
-            <CustomTextComponent text={"JAN '22"} fs={13} color={"#999"} />
-            {dateBox === "JAN22" ? (
-              <View
-                style={{
-                  width: "74%",
-                  height: 3,
-                  backgroundColor: "#7B35E7",
-                  marginTop: 6,
-                }}
-              />
-            ) : (
-              <></>
-            )}
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.5}
-            style={{
-              width: windowWidth / 5,
-              paddingVertical: 2,
-              alignItems: "center",
-            }}
-            onPress={() => {
-              setDateBox("FEB22");
-            }}
-          >
-            <View style={{ height: 10 }} />
-            <CustomTextComponent text={"FEB '22"} fs={13} color={"#999"} />
-            {dateBox === "FEB22" ? (
-              <View
-                style={{
-                  width: "74%",
-                  height: 3,
-                  backgroundColor: "#7B35E7",
-                  marginTop: 6,
-                }}
-              />
-            ) : (
-              <></>
-            )}
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.5}
-            style={{
-              width: windowWidth / 5,
-              paddingVertical: 2,
-              alignItems: "center",
-            }}
-            onPress={() => {
-              setDateBox("MAR22");
-            }}
-          >
-            <View style={{ height: 10 }} />
-            <CustomTextComponent text={"MAR '22"} fs={13} color={"#999"} />
-            {dateBox === "MAR22" ? (
-              <View
-                style={{
-                  width: "74%",
-                  height: 3,
-                  backgroundColor: "#7B35E7",
-                  marginTop: 6,
-                }}
-              />
-            ) : (
-              <></>
-            )}
-          </TouchableOpacity>
+          <BuildTabComponent
+            text={"OCT '22"}
+            selectedVal={dateBox}
+            val="OCT22"
+            onPress={() => { setDateBox("OCT22"); }}
+          />
+
+          <BuildTabComponent
+            text={"NOV '22"}
+            selectedVal={dateBox}
+            val="NOV22"
+            onPress={() => { setDateBox("NOV22"); }}
+          />
+
+          <BuildTabComponent
+            text={"DEC '22"}
+            selectedVal={dateBox}
+            val="DEC22"
+            onPress={() => { setDateBox("DEC22"); }}
+          />
+
+          <BuildTabComponent
+            text={"JAN '22"}
+            selectedVal={dateBox}
+            val="JAN22"
+            onPress={() => { setDateBox("JAN22"); }}
+          />
+
+          <BuildTabComponent
+            text={"FEB '22"}
+            selectedVal={dateBox}
+            val="FEB22"
+            onPress={() => { setDateBox("FEB22"); }}
+          />
+
+          <BuildTabComponent
+            text={"MAR '22"}
+            selectedVal={dateBox}
+            val="MAR22"
+            onPress={() => { setDateBox("MAR22"); }}
+          />
         </ScrollView>
       </View>
 
@@ -212,15 +132,59 @@ export default function DateTopTabsComponent({ navigation, showEmployee }) {
         <BuildMonthComponent
           navigation={navigation}
           showEmployee={showEmployee}
+          merchantDetails={merchantDetails}
         />
       ) : (
         <></>
       )}
+
+      {dateBox === "NOV22" ? (
+        <BuildMonthComponent
+          navigation={navigation}
+          showEmployee={showEmployee}
+          merchantDetails={merchantDetails}
+        />
+      ) : (
+        <></>
+      )}
+
+      {dateBox === "DEC22"
+        ? <View style={{ width: '100%', height: 100, alignItems: 'center', justifyContent: 'center' }}>
+          <CustomTextComponent text={"No Data"} fs={16} color="#000" />
+        </View>
+        : <></>}
+
+      {dateBox === "JAN22" ? (
+        <BuildMonthComponent
+          navigation={navigation}
+          showEmployee={showEmployee}
+          merchantDetails={merchantDetails}
+        />
+      ) : (
+        <></>
+      )}
+
+      {dateBox === "FEB22" ? (
+        <BuildMonthComponent
+          navigation={navigation}
+          showEmployee={showEmployee}
+          merchantDetails={merchantDetails}
+        />
+      ) : (
+        <></>
+      )}
+
+      {dateBox === "MAR22"
+        ? <View style={{ width: '100%', height: 100, alignItems: 'center', justifyContent: 'center' }}>
+          <CustomTextComponent text={"No Data"} fs={16} color="#000" />
+        </View>
+        : <></>}
+
     </View>
   );
 }
 
-const BuildMonthComponent = ({ navigation, showEmployee }) => {
+const BuildMonthComponent = ({ navigation, showEmployee, merchantDetails }) => {
   return (
     <View
       style={{
@@ -235,19 +199,24 @@ const BuildMonthComponent = ({ navigation, showEmployee }) => {
         fs={12}
         color={"rgba(133, 148, 159, 1)"}
       />
-      <BuildSingleMerchantComponent
-        showEmployee={showEmployee}
-        onPress={() => {
-          navigation.navigate("CompanyWalletTransactionScreen");
-        }}
-      />
-      <BuildSingleMerchantComponent showEmployee={showEmployee} />
-      <BuildSingleMerchantComponent showEmployee={showEmployee} />
+      {
+        merchantDetails.map((singleMerchant) => {
+          return (
+            <BuildSingleMerchantComponent
+              showEmployee={showEmployee}
+              merchantDetails={singleMerchant}
+              onPress={() => {
+                navigation.navigate("CompanyWalletTransactionScreen");
+              }}
+            />
+          );
+        })
+      }
     </View>
   );
 };
 
-const BuildSingleMerchantComponent = ({ onPress, showEmployee }) => {
+const BuildSingleMerchantComponent = ({ onPress, showEmployee, merchantDetails }) => {
   const employeeDetail = () => {
     return (
       <>
@@ -271,7 +240,7 @@ const BuildSingleMerchantComponent = ({ onPress, showEmployee }) => {
             }}
           />
           <CustomTextComponent
-            text="Employee Name | Department"
+            text={`${merchantDetails.employee_name} | ${merchantDetails.department_name}`}
             fs={13}
             color={"grey"}
           />
@@ -314,7 +283,7 @@ const BuildSingleMerchantComponent = ({ onPress, showEmployee }) => {
 
               <View style={{ width: windowWidth / 2.6 }}>
                 <CustomTextComponent
-                  text="Merchant Name LLC"
+                  text={merchantDetails.merchant_name}
                   fs={16}
                   color={"#000"}
                 />
@@ -326,7 +295,7 @@ const BuildSingleMerchantComponent = ({ onPress, showEmployee }) => {
                 <CustomTextComponent text="AED" fs={12} color={"#000"} />
               </View>
               <CustomTextComponent
-                text="321.00"
+                text={merchantDetails.amount + ".00"}
                 fs={24}
                 color={"#000"}
                 ff="Montserrat-Bold"
@@ -358,7 +327,7 @@ const BuildSingleMerchantComponent = ({ onPress, showEmployee }) => {
                   marginHorizontal: 4,
                 }}
               />
-              <CustomTextComponent text="4284" fs={15} color={"grey"} />
+              <CustomTextComponent text={merchantDetails.card_last_4_digits} fs={15} color={"grey"} />
             </View>
 
             <View style={{ flexDirection: "row", alignItems: "center" }}>

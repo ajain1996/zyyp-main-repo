@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -16,9 +16,17 @@ import SvgUri from "react-native-svg-uri";
 import { COLORS, FONTS, images, SIZES } from "../../constants";
 import { Button, ButtonText, SemiBoldText } from "../../components";
 import { Searchbar } from "react-native-paper";
+import { getTransactionsOnOrganizationLevel } from "../../utils/API";
 
 export default function CompanyWalletMainScreen({ navigation }) {
   const [selectPopup, setSelectPopup] = useState(false);
+
+  // useEffect(() => {
+  //   getTransactionsOnOrganizationLevel(
+  //     () => { }
+  //   );
+  // }, []);
+
 
   const renderTransactionsBtnBlock = (image, text, isLarge) => {
     return (
@@ -166,24 +174,8 @@ export default function CompanyWalletMainScreen({ navigation }) {
 
       <View style={styles.transactionContainer}>
         <View style={{ alignItems: "center", paddingHorizontal: 20 }}>
-          <View
-            style={{
-              width: 34,
-              height: 3.6,
-              backgroundColor: "grey",
-              marginVertical: 0.5,
-              borderRadius: 50,
-            }}
-          />
-          <View
-            style={{
-              width: 34,
-              height: 3.6,
-              backgroundColor: "grey",
-              marginVertical: 0.6,
-              borderRadius: 50,
-            }}
-          />
+          <View style={{ width: 34, height: 3.6, backgroundColor: "grey", marginVertical: 0.5, borderRadius: 50 }} />
+          <View style={{ width: 34, height: 3.6, backgroundColor: "grey", marginVertical: 0.6, borderRadius: 50 }} />
         </View>
 
         <TouchableOpacity style={{ paddingHorizontal: 20 }}>
@@ -220,14 +212,7 @@ export default function CompanyWalletMainScreen({ navigation }) {
             <View style={{ width: 20 }} />
           </ScrollView>
         </View>
-        <View
-          style={{
-            width: "100%",
-            // elevation: 17,
-            // shadowColor: '#999',
-            backgroundColor: "#fff",
-          }}
-        >
+        <View style={{ width: "100%", backgroundColor: "#fff" }}>
           <DateTopTabsComponent navigation={navigation} />
         </View>
       </View>
@@ -263,13 +248,6 @@ const MainHeaderComponent = ({ navigation }) => {
         >
           <Text style={styles.fontStyle}>Wallet</Text>
         </TouchableOpacity>
-        {/* <Switch
-                    trackColor={{ false: "#767577", true: "#81b0ff" }}
-                    thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-                    ios_backgroundColor="#3e3e3e"
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
-                /> */}
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <TouchableOpacity
             activeOpacity={0.6}

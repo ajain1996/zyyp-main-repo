@@ -1,11 +1,45 @@
-import React, {useState} from 'react';
-import {View, Text, ScrollView, Image, TouchableOpacity} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 import CustomTextComponent from '../../components/CustomTextComponent';
-import {COLORS} from '../../utils/colors';
-import {CompanyWalletTransactionHeader} from './CompanyWalletTransactionScreen';
+import { COLORS } from '../../utils/colors';
+import { CompanyWalletTransactionHeader } from './CompanyWalletTransactionScreen';
 
-export default function AddFundsScreen({navigation}) {
+export default function AddFundsScreen({ navigation }) {
   const [selectedAccount, setSelectedAccount] = useState('');
+
+  const [approvedAccounts, setApprovedAccounts] = useState([
+    {
+      "account_holder_name": "John Doe",
+      "account_id": "b6822247-052d-4bb1-ad49-5e46f7c8fdd0",
+      "account_number": 1511593983,
+      "account_type": "OWNER",
+      "address": {
+        "address_line_1": "aliqua sit",
+        "address_line_2": "nulla ea aliqua amet dolor",
+        "city": "consequat cupidatat ex tempor",
+        "country": "dolore nisi",
+        "postal_code": "sunt dolor consequat Duis",
+        "state": "non laboris",
+        "street": "sint cillum"
+      },
+      "bank_address": {
+        "address_line_1": "dolore",
+        "address_line_2": "est exercitation deserunt officia",
+        "city": "sunt",
+        "country": "enim Excepteur",
+        "postal_code": "velit Duis enim",
+        "state": "elit in officia nisi ullamco",
+        "street": "eiusmod voluptate"
+      },
+      "bank_name": "Bank of Sharjah",
+      "email": "bob@example.com",
+      "iban": "AE070331234567890123456",
+      "mobile": "+551185249635",
+      "org_id": 100001,
+      "swift_code": "CBAUAEAAXXX",
+      "user_id": 200001
+    }
+  ]);
 
   return (
     <View>
@@ -13,34 +47,34 @@ export default function AddFundsScreen({navigation}) {
         navigation={navigation}
         text="Add Funds"
       />
-      <ScrollView style={{backgroundColor: '#fff'}}>
-        <View style={{padding: 30}}>
+      <ScrollView style={{ backgroundColor: '#fff' }}>
+        <View style={{ padding: 30 }}>
           <CustomTextComponent
             text="Wallet Details"
             fs={20}
             color={COLORS.BLACK}
             fw="500"
           />
-          <View style={{height: 8}} />
+          <View style={{ height: 8 }} />
           <CustomTextComponent
             text="Add this account as beneficary in your approved bank account mentioned below"
             fs={12}
             color={COLORS.BLACK40}
             fw="500"
           />
-          <View style={{height: 34}} />
+          <View style={{ height: 34 }} />
 
           <BuildTextCopyComponent
             title="Account Number"
             info="1234-1231-12313-8273"
           />
-          <View style={{height: 30}} />
+          <View style={{ height: 30 }} />
 
           <BuildTextCopyComponent
             title="Account holder name"
             info="Zyyp-prabh--owner"
           />
-          <View style={{height: 30}} />
+          <View style={{ height: 30 }} />
 
           <BuildTextCopyComponent title="Bank Name" info="NBD23898123" />
 
@@ -61,26 +95,23 @@ export default function AddFundsScreen({navigation}) {
           />
           <Text />
 
-          <BuildApprovedAccount
-            title="Company Account"
-            accountNumber="2384-7202-9830-2"
-            holderName="Aryan Jain"
-            selectedVal="SDFC"
-            selectedAccount={selectedAccount}
-            bankName="SDFC Kerela"
-            onPress={() => {}}
-          />
-          <BuildApprovedAccount
-            title="Owner Account"
-            accountNumber="2384-7202-9830-2"
-            holderName="Franklin Richards"
-            selectedVal="ICICI"
-            selectedAccount={selectedAccount}
-            bankName="ICICI Gujarat"
-            onPress={() => {}}
-          />
+          {
+            approvedAccounts.map((accounts, index) => {
+              return (
+                <BuildApprovedAccount
+                  title={accounts.account_type}
+                  accountNumber={accounts.account_number}
+                  holderName={accounts.account_holder_name}
+                  selectedVal="SDFC"
+                  selectedAccount={selectedAccount}
+                  bankName={accounts.bank_name}
+                  onPress={() => { }}
+                />
+              );
+            })
+          }
 
-          <View style={{paddingHorizontal: 20, marginBottom: 15}}>
+          <View style={{ paddingHorizontal: 20, marginBottom: 15 }}>
             <CustomTextComponent
               text={`NOTE: Your transfer will be processed\nwithin 2 working days`}
               fs={12}
@@ -96,7 +127,7 @@ export default function AddFundsScreen({navigation}) {
   );
 }
 
-const BuildTextCopyComponent = ({title, info}) => {
+const BuildTextCopyComponent = ({ title, info }) => {
   return (
     <View>
       <CustomTextComponent
@@ -121,7 +152,7 @@ const BuildTextCopyComponent = ({title, info}) => {
         />
         <Image
           source={require('../../../assets/icons/copy.png')}
-          style={{width: 26, height: 26}}
+          style={{ width: 26, height: 26 }}
         />
       </View>
     </View>
@@ -152,9 +183,9 @@ export const BuildApprovedAccount = ({
       }}>
       <TouchableOpacity
         activeOpacity={1}
-        style={{paddingHorizontal: 16, paddingVertical: 12}}
+        style={{ paddingHorizontal: 16, paddingVertical: 12 }}
         onPress={onPress}>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <CustomTextComponent
             text={title}
             fs={21}
@@ -165,27 +196,27 @@ export const BuildApprovedAccount = ({
           {selectedVal === selectedAccount ? (
             <Image
               source={require('../../../assets/icons/check_ring.png')}
-              style={{width: 28, height: 28}}
+              style={{ width: 28, height: 28 }}
             />
           ) : (
             <></>
           )}
         </View>
-        <View style={{height: 8}} />
+        <View style={{ height: 8 }} />
         <CustomTextComponent
           text={accountNumber}
           fs={17}
           fw="500"
           color={selectedVal === selectedAccount ? '#7B35E7' : COLORS.BLACK40}
         />
-        <View style={{height: 8}} />
+        <View style={{ height: 8 }} />
         <CustomTextComponent
           text={holderName}
           fs={17}
           fw="500"
           color={selectedVal === selectedAccount ? '#7B35E7' : COLORS.BLACK40}
         />
-        <View style={{height: 8}} />
+        <View style={{ height: 8 }} />
         <CustomTextComponent
           text={bankName}
           fs={17}
