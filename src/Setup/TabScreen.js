@@ -54,6 +54,8 @@ import NewRecepientAddFundsScreen from "../screens/Wallet/statements/NewRecepien
 import IncidentLandingPage from "../screens/Insights/IncidentLandingPage";
 import IncidentDetails from "../screens/Insights/IncidentDetails";
 import ReportIncident from "../screens/Insights/ReportIncident";
+import DashboardNotification from "../screens/Dashboard/DashboardNotification";
+import DashboardSettingScreen from "../screens/Dashboard/DashboardSettingScreen";
 
 const Tab = createBottomTabNavigator();
 const DashboardStack = createNativeStackNavigator();
@@ -62,7 +64,7 @@ const PaymentStack = createNativeStackNavigator();
 const WalletStack = createNativeStackNavigator();
 const InsightsStack = createNativeStackNavigator();
 
-const TabScreen = ({}) => {
+const TabScreen = ({ }) => {
   return (
     <Tab.Navigator
       initialRouteName="Expense"
@@ -129,7 +131,7 @@ const TabScreen = ({}) => {
   );
 };
 
-const DashboardScreen = ({}) => {
+const DashboardScreen = ({ }) => {
   return (
     <DashboardStack.Navigator>
       <DashboardStack.Screen
@@ -234,7 +236,7 @@ const DashboardScreen = ({}) => {
   );
 };
 
-const ExpenseScreen = ({}) => {
+const ExpenseScreen = ({ }) => {
   return (
     <ExpenseStack.Navigator initialRouteName={"Settings"}>
       <ExpenseStack.Screen
@@ -268,7 +270,7 @@ const ExpenseScreen = ({}) => {
   );
 };
 
-const PaymentScreen = ({}) => {
+const PaymentScreen = ({ }) => {
   return (
     <PaymentStack.Navigator>
       <ExpenseStack.Screen
@@ -291,7 +293,7 @@ const PaymentScreen = ({}) => {
         component={StatementInputCodeScreen}
         options={{ headerShown: false }}
       />
-        <ExpenseStack.Screen
+      <ExpenseStack.Screen
         name={"ConfirmTransferScreen"}
         component={ConfirmTransferScreen}
         options={{ headerShown: false }}
@@ -301,7 +303,7 @@ const PaymentScreen = ({}) => {
         component={NewPaymentRecepient}
         options={{ headerShown: false }}
       />
-       <ExpenseStack.Screen
+      <ExpenseStack.Screen
         name={"NewRecepientAddFundsScreen"}
         component={NewRecepientAddFundsScreen}
         options={{ headerShown: false }}
@@ -315,7 +317,7 @@ const PaymentScreen = ({}) => {
   );
 };
 
-const WalletScreen = ({}) => {
+const WalletScreen = ({ }) => {
   return (
     <WalletStack.Navigator>
       {/* <ExpenseStack.Screen
@@ -397,12 +399,22 @@ const WalletScreen = ({}) => {
         name={"WalletCompanyPaymentScreen"}
         component={WalletCompanyPaymentScreen}
         options={{ headerShown: false }}
-      /> 
+      />
+      <ExpenseStack.Screen
+        name={"DashboardNotification"}
+        component={DashboardNotification}
+        options={{ headerShown: false }}
+      />
+      <ExpenseStack.Screen
+        name={"DashboardSettingScreen"}
+        component={DashboardSettingScreen}
+        options={{ headerShown: false }}
+      />
     </WalletStack.Navigator>
   );
 };
 
-const InsightsScreen = ({}) => {
+const InsightsScreen = ({ }) => {
   return (
     <InsightsStack.Navigator>
       <ExpenseStack.Screen
