@@ -73,7 +73,7 @@ const TransactionManagerAPIPostRequest = async (successCallBack) => {
 }
 
 
-const PaymentsManagerAPIPostRequest = async (successCallBack) => {
+export const PaymentsManagerAPIPostRequest = async (successCallBack) => {
     console.log('\n\n PaymentsManagerAPIPostRequest Called : ');
     var bodyobj = {}
 
@@ -91,6 +91,114 @@ const PaymentsManagerAPIPostRequest = async (successCallBack) => {
         successCallBack(json);
     } catch (error) {
         console.log('\n\n PaymentsManagerAPIPostRequest Failed : ')
+        successCallBack(null);
+    }
+}
+
+
+export const createAccountAPIPostRequest = async (successCallBack) => {
+    console.log('\n\n createAccountAPIPostRequest Called : ');
+    var bodyobj = {
+        "account_type": "PERSONAL",
+        "user_id": 200001
+    }
+
+    try {
+        let response = await fetch(baseURL + '8082/', {
+            method: 'POST',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(bodyobj),
+        });
+        let json = await response.json();
+        console.log('\n\n createAccountAPIPostRequest success', json);
+        successCallBack(json);
+    } catch (error) {
+        console.log('\n\n createAccountAPIPostRequest Failed : ')
+        successCallBack(null);
+    }
+}
+
+
+export const updateAccountAPIPostRequest = async (successCallBack) => {
+    console.log('\n\n updateAccountAPIPostRequest Called : ');
+    var bodyobj = {
+        "account_type": "PERSONAL",
+        "user_id": 200001
+    }
+
+    try {
+        let response = await fetch(baseURL + 'accounts/:accountId?action=LOCK', {
+            method: 'POST',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(bodyobj),
+        });
+        let json = await response.json();
+        console.log('\n\n updateAccountAPIPostRequest success', json);
+        successCallBack(json);
+    } catch (error) {
+        console.log('\n\n updateAccountAPIPostRequest Failed : ')
+        successCallBack(null);
+    }
+}
+
+
+export const createCardsAPIPostRequest = async (cardId, card_type, account_id, notes, user_id, successCallBack) => {
+    console.log('\n\n createCardsAPIPostRequest Called : ');
+    var bodyobj = {
+        "card_type": "PHYSICAL",
+        "account_id": "0ujsswThIGTUYm2K8FjOOfXtY1K",
+        "notes": "notes",
+        "user_id": 200001
+    }
+
+    try {
+        let response = await fetch(baseURL + 'cards', {
+            method: 'POST',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(bodyobj),
+        });
+        let json = await response.json();
+        console.log('\n\n createCardsAPIPostRequest success', json);
+        successCallBack(json);
+    } catch (error) {
+        console.log('\n\n createCardsAPIPostRequest Failed : ')
+        successCallBack(null);
+    }
+}
+
+
+export const updateCardsAPIPostRequest = async (cardId, card_type, account_id, notes, user_id, successCallBack) => {
+    console.log('\n\n updateCardsAPIPostRequest Called : ');
+    var bodyobj = {
+        "card_type": "PHYSICAL",
+        "account_id": "0ujsswThIGTUYm2K8FjOOfXtY1K",
+        "notes": "notes",
+        "user_id": 200001
+    }
+
+    try {
+        let response = await fetch(baseURL + `cards/:${cardId}?action=LOCK`, {
+            method: 'POST',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(bodyobj),
+        });
+        let json = await response.json();
+        console.log('\n\n updateCardsAPIPostRequest success', json);
+        successCallBack(json);
+    } catch (error) {
+        console.log('\n\n updateCardsAPIPostRequest Failed : ')
         successCallBack(null);
     }
 }
