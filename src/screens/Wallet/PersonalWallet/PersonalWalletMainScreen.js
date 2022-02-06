@@ -132,12 +132,14 @@ const MainHeaderComponent = ({ navigation }) => {
           alignItems: "center",
         }}
       >
-        <CustomTextComponent
-          text="Wallet"
-          fs={22}
-          color={"#000"}
-          ff="PlayfairDisplay-Black"
-        />
+        <TouchableOpacity onPress={() => { navigation.navigate("CompanyWalletMainScreen") }}>
+          <CustomTextComponent
+            text="Wallet"
+            fs={22}
+            color={"#000"}
+            ff="PlayfairDisplay-Black"
+          />
+        </TouchableOpacity>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <View style={styles.headerContainer2}>
             <View style={{ width: 9 }} />
@@ -167,7 +169,7 @@ const MainHeaderComponent = ({ navigation }) => {
       <View style={{ alignItems: "center", marginTop: 20 }}>
         <View style={{ alignItems: "center" }}>
           <CustomTextComponent text="AED" fs={20} color={"grey"} />
-          <View style={{flexDirection: "row", alignItems: "center"}}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
             <SvgUri
               source={require("../../../../assets/svg/lock.svg")}
               style={{

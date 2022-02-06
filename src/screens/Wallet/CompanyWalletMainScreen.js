@@ -287,10 +287,12 @@ const MainHeaderComponent = ({ navigation }) => {
             )}
           </TouchableOpacity>
 
-          <SvgUri
-            source={require("../../../assets/svg/download.svg")}
-            style={{ width: 30, height: 30, marginLeft: 14 }}
-          />
+          <TouchableOpacity onPress={() => { navigation.navigate("InsightsTrendAnalysisScreen") }}>
+            <SvgUri
+              source={require("../../../assets/svg/download.svg")}
+              style={{ width: 30, height: 30, marginLeft: 14 }}
+            />
+          </TouchableOpacity>
         </View>
       </View>
       <Text />
@@ -314,11 +316,6 @@ const BuildAddFundsComponent = ({ navigation }) => {
   const renderSingleFundComponent = (image, text, onPress, isLarge) => {
     return (
       <TouchableOpacity style={{ alignItems: "center" }} onPress={onPress}>
-        {/* <SvgUri
-                    width={isLarge ? 42 : 30}
-                    height={isLarge ? 42 : 30}
-                    source={image}
-                /> */}
         <SvgUri
           source={image}
           resizeMode="contain"

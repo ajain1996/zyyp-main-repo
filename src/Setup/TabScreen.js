@@ -56,6 +56,8 @@ import IncidentDetails from "../screens/Insights/IncidentDetails";
 import ReportIncident from "../screens/Insights/ReportIncident";
 import DashboardNotification from "../screens/Dashboard/DashboardNotification";
 import DashboardSettingScreen from "../screens/Dashboard/DashboardSettingScreen";
+import InsightsTrendAnalysisScreen from "../screens/Dashboard/InsightsTrendAnalysisScreen";
+import InsightsForASpecificPeriod from "../screens/Dashboard/InsightsForASpecificPeriod";
 
 const Tab = createBottomTabNavigator();
 const DashboardStack = createNativeStackNavigator();
@@ -408,6 +410,16 @@ const WalletScreen = ({ }) => {
       <ExpenseStack.Screen
         name={"DashboardSettingScreen"}
         component={DashboardSettingScreen}
+        options={{ headerShown: false }}
+      />
+      <ExpenseStack.Screen
+        name={"InsightsTrendAnalysisScreen"}
+        component={InsightsTrendAnalysisScreen}
+        options={{ headerShown: false }}
+      />
+      <ExpenseStack.Screen
+        name={"InsightsForASpecificPeriod"}
+        component={InsightsForASpecificPeriod}
         options={{ headerShown: false }}
       />
     </WalletStack.Navigator>

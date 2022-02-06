@@ -33,6 +33,7 @@
     "react-native-actions-sheet": "^0.5.4",
     "react-native-base64": "^0.2.1",
     "react-native-biometrics": "^2.1.4",
+    "react-native-chart-kit": "^6.11.0",
     "react-native-device-info": "^8.3.3",
     "react-native-document-picker": "^7.1.0",
     "react-native-fast-image": "^8.5.8",
