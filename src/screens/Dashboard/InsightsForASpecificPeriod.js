@@ -184,7 +184,7 @@ const InsightsHeaderComponent = ({ navigation }) => {
 
             <View style={{ marginTop: 20 }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <TouchableOpacity style={{ paddingHorizontal: 13, paddingVertical: 3, borderRadius: 30, backgroundColor: selectedBtn === "Department" ? "#7B35E7" : "transparent" }} onP>
+                    <TouchableOpacity style={{ paddingHorizontal: 13, paddingVertical: 3, borderRadius: 30, backgroundColor: selectedBtn === "Department" ? "#7B35E7" : "transparent" }}>
                         <CustomTextComponent
                             text={"Department"} fs={11} color="#fff"
                         />
